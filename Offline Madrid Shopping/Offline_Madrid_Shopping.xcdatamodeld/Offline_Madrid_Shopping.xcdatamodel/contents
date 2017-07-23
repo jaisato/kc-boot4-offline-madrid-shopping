@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
+        <attribute name="address" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" minValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" minValueString="1" indexed="YES" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="descriptions" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopDescription" inverseName="shop" inverseEntity="ShopDescription" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="imageShop" inverseEntity="ShopImage" syncable="YES"/>
+        <relationship name="keywords" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopKeywords" inverseName="shop" inverseEntity="ShopKeywords" syncable="YES"/>
+        <relationship name="logo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="logoShop" inverseEntity="ShopImage" syncable="YES"/>
+        <relationship name="openingHours" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopOpeningHour" inverseName="shop" inverseEntity="ShopOpeningHour" syncable="YES"/>
+    </entity>
+    <entity name="ShopDescription" representedClassName="ShopDescription" syncable="YES" codeGenerationType="class">
+        <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="descriptions" inverseEntity="Shop" syncable="YES"/>
+    </entity>
+    <entity name="ShopImage" representedClassName="ShopImage" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="imageShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="image" inverseEntity="Shop" syncable="YES"/>
+        <relationship name="logoShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="logo" inverseEntity="Shop" syncable="YES"/>
+    </entity>
+    <entity name="ShopKeywords" representedClassName="ShopKeywords" syncable="YES" codeGenerationType="class">
+        <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="keywords" inverseEntity="Shop" syncable="YES"/>
+    </entity>
+    <entity name="ShopOpeningHour" representedClassName="ShopOpeningHour" syncable="YES" codeGenerationType="class">
+        <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="openingHours" inverseEntity="Shop" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Shop" positionX="-801" positionY="24" width="128" height="210"/>
+        <element name="ShopDescription" positionX="-495" positionY="-27" width="128" height="73"/>
+        <element name="ShopImage" positionX="-335" positionY="198" width="128" height="105"/>
+        <element name="ShopKeywords" positionX="-360" positionY="81" width="128" height="73"/>
+        <element name="ShopOpeningHour" positionX="-513" positionY="324" width="128" height="73"/>
+    </elements>
 </model>

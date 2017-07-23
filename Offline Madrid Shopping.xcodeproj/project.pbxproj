@@ -7,14 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41C143C91F24205500D0C38B /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143C81F24205500D0C38B /* Language.swift */; };
+		41C143CB1F2420B500D0C38B /* ShopDescription+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */; };
+		41C143CD1F24269C00D0C38B /* ShopOpeningHour+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */; };
+		41C143CF1F2426F200D0C38B /* ShopKeywords+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */; };
 		41C381651F23B71A00149609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381641F23B71A00149609 /* AppDelegate.swift */; };
-		41C381671F23B71A00149609 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381661F23B71A00149609 /* ViewController.swift */; };
+		41C381671F23B71A00149609 /* ShopLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381661F23B71A00149609 /* ShopLoaderViewController.swift */; };
 		41C3816A1F23B71A00149609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41C381681F23B71A00149609 /* Main.storyboard */; };
 		41C3816D1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */; };
 		41C3816F1F23B71A00149609 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C3816E1F23B71A00149609 /* Assets.xcassets */; };
 		41C381721F23B71A00149609 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41C381701F23B71A00149609 /* LaunchScreen.storyboard */; };
 		41C3817D1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3817C1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift */; };
 		41C381881F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */; };
+		41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */; };
+		41F60C9C1F23D72400BF8307 /* LoadShopsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */; };
+		41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */; };
+		41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */; };
+		41F60CA21F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */; };
+		41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60CA31F23E31500BF8307 /* ShopAPIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41C143C81F24205500D0C38B /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopDescription+Utils.swift"; sourceTree = "<group>"; };
+		41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopOpeningHour+Utils.swift"; sourceTree = "<group>"; };
+		41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopKeywords+Utils.swift"; sourceTree = "<group>"; };
 		41C381611F23B71A00149609 /* Offline Madrid Shopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Offline Madrid Shopping.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C381641F23B71A00149609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41C381661F23B71A00149609 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41C381661F23B71A00149609 /* ShopLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoaderViewController.swift; sourceTree = "<group>"; };
 		41C381691F23B71A00149609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41C3816C1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Offline_Madrid_Shopping.xcdatamodel; sourceTree = "<group>"; };
 		41C3816E1F23B71A00149609 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +63,12 @@
 		41C381831F23B71A00149609 /* Offline Madrid ShoppingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Offline Madrid ShoppingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline_Madrid_ShoppingUITests.swift; sourceTree = "<group>"; };
 		41C381891F23B71A00149609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingMapViewController.swift; sourceTree = "<group>"; };
+		41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopsInteractor.swift; sourceTree = "<group>"; };
+		41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManager.swift; sourceTree = "<group>"; };
+		41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shop+Utils.swift"; sourceTree = "<group>"; };
+		41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManagerURLSessionImpl.swift; sourceTree = "<group>"; };
+		41F60CA31F23E31500BF8307 /* ShopAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +120,13 @@
 			isa = PBXGroup;
 			children = (
 				41C381641F23B71A00149609 /* AppDelegate.swift */,
-				41C381661F23B71A00149609 /* ViewController.swift */,
-				41C381681F23B71A00149609 /* Main.storyboard */,
-				41C3816E1F23B71A00149609 /* Assets.xcassets */,
-				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
+				41F60C951F23D60500BF8307 /* Controller */,
+				41F60C991F23D6A100BF8307 /* Interactor */,
+				41F60C9A1F23D6AC00BF8307 /* Manager */,
+				41F60C971F23D64000BF8307 /* Model */,
+				41F60C961F23D62300BF8307 /* View */,
+				41F60C981F23D66D00BF8307 /* Resources */,
 				41C381731F23B71A00149609 /* Info.plist */,
-				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
 			);
 			path = "Offline Madrid Shopping";
 			sourceTree = "<group>";
@@ -126,6 +147,63 @@
 				41C381891F23B71A00149609 /* Info.plist */,
 			);
 			path = "Offline Madrid ShoppingUITests";
+			sourceTree = "<group>";
+		};
+		41F60C951F23D60500BF8307 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41C381661F23B71A00149609 /* ShopLoaderViewController.swift */,
+				41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		41F60C961F23D62300BF8307 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41C381681F23B71A00149609 /* Main.storyboard */,
+				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		41F60C971F23D64000BF8307 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
+				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
+				41C143C81F24205500D0C38B /* Language.swift */,
+				41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */,
+				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
+				41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		41F60C981F23D66D00BF8307 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				41C3816E1F23B71A00149609 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		41F60C991F23D6A100BF8307 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */,
+			);
+			name = Interactor;
+			sourceTree = "<group>";
+		};
+		41F60C9A1F23D6AC00BF8307 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */,
+				41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */,
+				41F60CA31F23E31500BF8307 /* ShopAPIError.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +274,7 @@
 				TargetAttributes = {
 					41C381601F23B71A00149609 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 7J62GCJ5B2;
+						DevelopmentTeam = R8Y22N7227;
 						ProvisioningStyle = Automatic;
 					};
 					41C381771F23B71A00149609 = {
@@ -265,9 +343,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41C381671F23B71A00149609 /* ViewController.swift in Sources */,
+				41C381671F23B71A00149609 /* ShopLoaderViewController.swift in Sources */,
+				41C143CB1F2420B500D0C38B /* ShopDescription+Utils.swift in Sources */,
+				41C143C91F24205500D0C38B /* Language.swift in Sources */,
+				41F60CA21F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift in Sources */,
 				41C381651F23B71A00149609 /* AppDelegate.swift in Sources */,
 				41C3816D1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld in Sources */,
+				41F60C9C1F23D72400BF8307 /* LoadShopsInteractor.swift in Sources */,
+				41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */,
+				41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */,
+				41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */,
+				41C143CF1F2426F200D0C38B /* ShopKeywords+Utils.swift in Sources */,
+				41C143CD1F24269C00D0C38B /* ShopOpeningHour+Utils.swift in Sources */,
+				41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7J62GCJ5B2;
+				DEVELOPMENT_TEAM = R8Y22N7227;
 				INFOPLIST_FILE = "Offline Madrid Shopping/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kc.bootcamp4.ios.adv.Offline-Madrid-Shopping";
@@ -434,7 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7J62GCJ5B2;
+				DEVELOPMENT_TEAM = R8Y22N7227;
 				INFOPLIST_FILE = "Offline Madrid Shopping/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kc.bootcamp4.ios.adv.Offline-Madrid-Shopping";
@@ -520,6 +608,7 @@
 				41C3818E1F23B71A00149609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41C3818F1F23B71A00149609 /* Build configuration list for PBXNativeTarget "Offline Madrid ShoppingTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +617,7 @@
 				41C381911F23B71A00149609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41C381921F23B71A00149609 /* Build configuration list for PBXNativeTarget "Offline Madrid ShoppingUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +626,7 @@
 				41C381941F23B71A00149609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

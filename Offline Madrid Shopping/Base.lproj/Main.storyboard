@@ -1,26 +1,108 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9r9-0i-na2">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Shop Loader View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ShopLoaderViewController" customModule="Offline_Madrid_Shopping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offline-madrid-shopping-logo" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-h6-fwW">
+                                <rect key="frame" x="24" y="72" width="272" height="272"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2kP-h6-fwW" secondAttribute="height" multiplier="1:1" id="CzJ-u3-ds7"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlG-Mv-JPb">
+                                <rect key="frame" x="117.5" y="369" width="86" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Load Shops">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="npU-kv-JiM" kind="show" identifier="goToShoppingMapSegue" id="7F3-Mz-957"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="52l-7X-rk3">
+                                <rect key="frame" x="142" y="417" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hlG-Mv-JPb" firstAttribute="top" secondItem="2kP-h6-fwW" secondAttribute="bottom" constant="25" id="D5f-cw-Gf3"/>
+                            <constraint firstItem="2kP-h6-fwW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="Dtc-0X-Deh"/>
+                            <constraint firstItem="52l-7X-rk3" firstAttribute="top" secondItem="hlG-Mv-JPb" secondAttribute="bottom" constant="16" id="E0E-qZ-qdp"/>
+                            <constraint firstItem="hlG-Mv-JPb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JCh-fo-oE6"/>
+                            <constraint firstItem="2kP-h6-fwW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Nsc-3M-QxU"/>
+                            <constraint firstItem="2kP-h6-fwW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RtL-c1-sHB"/>
+                            <constraint firstItem="52l-7X-rk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jf0-tu-pSu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2kP-h6-fwW" secondAttribute="trailing" constant="8" id="og1-YB-Hm4"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iWv-nD-4RP"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="52l-7X-rk3" id="V2j-AH-scP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="201" y="37"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Tb0-47-Ag3">
+            <objects>
+                <viewController id="npU-kv-JiM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dH0-Hb-yvo"/>
+                        <viewControllerLayoutGuide type="bottom" id="4QJ-eN-JBN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pCt-A7-KEK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W84-Hl-Wjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="37"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Veu-xG-cye">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9r9-0i-na2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4qI-VD-tEu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="L30-s7-0rj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5o-69-hC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-563" y="37"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="offline-madrid-shopping-logo" width="278" height="175"/>
+    </resources>
 </document>
