@@ -6,7 +6,7 @@
 //  Copyright © 2017 JST. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
 extension ShopKeywords {
     @NSManaged private var _language: String
@@ -18,5 +18,16 @@ extension ShopKeywords {
         set {
             self._language = newValue.rawValue
         }
+    }
+    
+    public convenience init(from shopJson: ShopJson, language: Language, context: NSManagedObjectContext) {
+        self.init(context: context)
+        
+        self.language = language
+        if language == Language.spanish {
+            self.text = (shopJson["keywords_es"] as! String)
+        }
+        
+        self.text = (shopJson["keywords_en"] as! String)
     }
 }

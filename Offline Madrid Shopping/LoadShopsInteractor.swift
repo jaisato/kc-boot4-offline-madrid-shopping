@@ -19,20 +19,13 @@ public class LoadShopsInteractor {
         self.init(manager: ShopAPIManagerURLSessionImpl())
     }
     
-    public func execute(completion: @escaping ([Shop]) -> Void, onError: @escaping (Error) -> Void) {
-        do {
-            try _manager.getShops(completion: { (shops: [Shop]) in
-                assert(Thread.current === Thread.main)
+    public func execute(completion: @escaping GetShopsCompletionClosure, onError: @escaping ErrorClosure) {
+        _manager.getShops(completion: { (shops: ShopJsonArray) in
+            assert(Thread.current === Thread.main)
             
-                completion(shops)
-            }) { (error: Error) in
-                onError(error)
-            }
-        } catch let error as ShopAPIError {
+            completion(shops)
+        }) { (error: Error) in
             onError(error)
-        } catch {
-            // unexpected error
-            fatalError(error.localizedDescription)
         }
     }
 }

@@ -36,7 +36,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="npU-kv-JiM" kind="show" identifier="goToShoppingMapSegue" id="7F3-Mz-957"/>
+                                    <action selector="loadShopsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Rq-cb-PB9"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="52l-7X-rk3">
@@ -59,16 +59,17 @@
                     <navigationItem key="navigationItem" id="iWv-nD-4RP"/>
                     <connections>
                         <outlet property="activityIndicator" destination="52l-7X-rk3" id="V2j-AH-scP"/>
+                        <segue destination="npU-kv-JiM" kind="show" identifier="goToShoppingMapSegue" id="X3a-4U-d6G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="201" y="37"/>
         </scene>
-        <!--View Controller-->
+        <!--Shopping Map View Controller-->
         <scene sceneID="Tb0-47-Ag3">
             <objects>
-                <viewController id="npU-kv-JiM" sceneMemberID="viewController">
+                <viewController id="npU-kv-JiM" customClass="ShoppingMapViewController" customModule="Offline_Madrid_Shopping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dH0-Hb-yvo"/>
                         <viewControllerLayoutGuide type="bottom" id="4QJ-eN-JBN"/>

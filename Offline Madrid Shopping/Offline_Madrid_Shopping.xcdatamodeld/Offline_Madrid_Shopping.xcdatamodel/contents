@@ -10,6 +10,7 @@
         <relationship name="descriptions" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopDescription" inverseName="shop" inverseEntity="ShopDescription" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="imageShop" inverseEntity="ShopImage" syncable="YES"/>
         <relationship name="keywords" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopKeywords" inverseName="shop" inverseEntity="ShopKeywords" syncable="YES"/>
+        <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="ShopLocation" inverseName="shop" inverseEntity="ShopLocation" syncable="YES"/>
         <relationship name="logo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="logoShop" inverseEntity="ShopImage" syncable="YES"/>
         <relationship name="openingHours" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopOpeningHour" inverseName="shop" inverseEntity="ShopOpeningHour" syncable="YES"/>
     </entity>
@@ -27,15 +28,21 @@
         <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="keywords" inverseEntity="Shop" syncable="YES"/>
     </entity>
+    <entity name="ShopLocation" representedClassName="ShopLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="latitude" attributeType="Double" minValueString="-90" maxValueString="90" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" minValueString="-180" maxValueString="180" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="location" inverseEntity="Shop" syncable="YES"/>
+    </entity>
     <entity name="ShopOpeningHour" representedClassName="ShopOpeningHour" syncable="YES" codeGenerationType="class">
         <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="openingHours" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Shop" positionX="-801" positionY="24" width="128" height="210"/>
+        <element name="Shop" positionX="-801" positionY="24" width="128" height="223"/>
         <element name="ShopDescription" positionX="-495" positionY="-27" width="128" height="73"/>
         <element name="ShopImage" positionX="-335" positionY="198" width="128" height="105"/>
         <element name="ShopKeywords" positionX="-360" positionY="81" width="128" height="73"/>
+        <element name="ShopLocation" positionX="-594" positionY="126" width="128" height="90"/>
         <element name="ShopOpeningHour" positionX="-513" positionY="324" width="128" height="73"/>
     </elements>
 </model>

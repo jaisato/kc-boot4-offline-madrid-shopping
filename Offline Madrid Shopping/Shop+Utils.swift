@@ -6,7 +6,7 @@
 //  Copyright © 2017 JST. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
 public typealias ShopJson = Dictionary<String, Any>
 public typealias ShopJsonArray = [ShopJson]
@@ -32,58 +32,15 @@ extension Shop {
      "keywords_es": "Cortefiel, Springfield, Pedro del Hierro, Women’secret",
      **/
     
-    public convenience init(from shopJson: ShopJson) {
-        self.init()
+    public convenience init(from shopJson: ShopJson, context: NSManagedObjectContext) {
+        self.init(context: context)
         
-        self.id = shopJson["id"] as! Int32
+        self.id = Int32(shopJson["id"] as! String)!
         self.name = (shopJson["name"] as! String)
         self.address = (shopJson["address"] as! String)
         
         self.phone = shopJson["telephone"] as? String
         self.email = shopJson["email"] as? String
         self.url = shopJson["url"] as? String
-        
-        // Shop Images
-        self.image = ShopImage()
-        self.image?.url = shopJson["img"] as? String
-        // TODO: image data
-        self.logo = ShopImage()
-        self.logo?.url = shopJson["logo_img"] as? String
-        // TODO: image data
-        
-        // Shop location (Coordinates)
-        
-        
-        // Multivalue data (by language)
-        let enDescription = ShopDescription()
-        enDescription.language = Language.english
-        enDescription.text = (shopJson["description_en"] as! String)
-        
-        let esDescription = ShopDescription()
-        esDescription.language = Language.spanish
-        esDescription.text = (shopJson["description_es"] as! String)
-        
-        self.addToDescriptions(NSSet(array: [esDescription, enDescription]))
-        
-        let enOpeningHours = ShopOpeningHour()
-        enOpeningHours.language = Language.english
-        enOpeningHours.text = (shopJson["opening_hours_en"] as! String)
-        
-        let esOpeningHours = ShopOpeningHour()
-        esOpeningHours.language = Language.spanish
-        esOpeningHours.text = (shopJson["opening_hours_es"] as! String)
-        
-        self.addToOpeningHours(NSSet(array: [esOpeningHours, enOpeningHours]))
-        
-        let enKeywords = ShopKeywords()
-        enKeywords.language = Language.english
-        enKeywords.text = (shopJson["keywords_en"] as! String)
-        
-        let esKeywords = ShopKeywords()
-        esKeywords.language = Language.spanish
-        esKeywords.text = (shopJson["keywords_es"] as! String)
-        
-        self.addToKeywords(NSSet(array: [esKeywords, enKeywords]))
-        
     }
 }

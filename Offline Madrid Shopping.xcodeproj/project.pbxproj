@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */; };
+		417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */; };
+		417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */; };
+		418FD11A1F2575930079B103 /* ShopLocation+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FD1191F2575930079B103 /* ShopLocation+Utils.swift */; };
+		418FD11C1F2584860079B103 /* ShopImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FD11B1F2584860079B103 /* ShopImage+Utils.swift */; };
 		41C143C91F24205500D0C38B /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143C81F24205500D0C38B /* Language.swift */; };
 		41C143CB1F2420B500D0C38B /* ShopDescription+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */; };
 		41C143CD1F24269C00D0C38B /* ShopOpeningHour+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */; };
 		41C143CF1F2426F200D0C38B /* ShopKeywords+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */; };
+		41C143D21F25017200D0C38B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C143D11F25017200D0C38B /* MapKit.framework */; };
+		41C143D41F25019700D0C38B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C143D31F25019700D0C38B /* CoreData.framework */; };
+		41C143D61F25134300D0C38B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C143D51F25134300D0C38B /* CoreDataManager.swift */; };
 		41C381651F23B71A00149609 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381641F23B71A00149609 /* AppDelegate.swift */; };
 		41C381671F23B71A00149609 /* ShopLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381661F23B71A00149609 /* ShopLoaderViewController.swift */; };
 		41C3816A1F23B71A00149609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41C381681F23B71A00149609 /* Main.storyboard */; };
@@ -45,10 +53,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveShopInteractor.swift; sourceTree = "<group>"; };
+		417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManagerCoreDataImpl.swift; sourceTree = "<group>"; };
+		417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopImageInteractor.swift; sourceTree = "<group>"; };
+		418FD1191F2575930079B103 /* ShopLocation+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopLocation+Utils.swift"; sourceTree = "<group>"; };
+		418FD11B1F2584860079B103 /* ShopImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopImage+Utils.swift"; sourceTree = "<group>"; };
 		41C143C81F24205500D0C38B /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopDescription+Utils.swift"; sourceTree = "<group>"; };
 		41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopOpeningHour+Utils.swift"; sourceTree = "<group>"; };
 		41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShopKeywords+Utils.swift"; sourceTree = "<group>"; };
+		41C143D11F25017200D0C38B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		41C143D31F25019700D0C38B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		41C143D51F25134300D0C38B /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		41C381611F23B71A00149609 /* Offline Madrid Shopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Offline Madrid Shopping.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C381641F23B71A00149609 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41C381661F23B71A00149609 /* ShopLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoaderViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41C143D41F25019700D0C38B /* CoreData.framework in Frameworks */,
+				41C143D21F25017200D0C38B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41C143D01F25017200D0C38B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41C143D31F25019700D0C38B /* CoreData.framework */,
+				41C143D11F25017200D0C38B /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41C381581F23B71A00149609 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +130,7 @@
 				41C3817B1F23B71A00149609 /* Offline Madrid ShoppingTests */,
 				41C381861F23B71A00149609 /* Offline Madrid ShoppingUITests */,
 				41C381621F23B71A00149609 /* Products */,
+				41C143D01F25017200D0C38B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,11 +199,13 @@
 			isa = PBXGroup;
 			children = (
 				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
-				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
 				41C143C81F24205500D0C38B /* Language.swift */,
+				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
 				41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */,
-				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
 				41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */,
+				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
+				418FD1191F2575930079B103 /* ShopLocation+Utils.swift */,
+				418FD11B1F2584860079B103 /* ShopImage+Utils.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -192,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */,
+				417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */,
+				417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -201,6 +233,8 @@
 			children = (
 				41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */,
 				41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */,
+				417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */,
+				41C143D51F25134300D0C38B /* CoreDataManager.swift */,
 				41F60CA31F23E31500BF8307 /* ShopAPIError.swift */,
 			);
 			name = Manager;
@@ -276,6 +310,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = R8Y22N7227;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					41C381771F23B71A00149609 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -349,12 +388,18 @@
 				41F60CA21F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift in Sources */,
 				41C381651F23B71A00149609 /* AppDelegate.swift in Sources */,
 				41C3816D1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld in Sources */,
+				418FD11A1F2575930079B103 /* ShopLocation+Utils.swift in Sources */,
 				41F60C9C1F23D72400BF8307 /* LoadShopsInteractor.swift in Sources */,
 				41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */,
 				41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */,
 				41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */,
+				418FD11C1F2584860079B103 /* ShopImage+Utils.swift in Sources */,
 				41C143CF1F2426F200D0C38B /* ShopKeywords+Utils.swift in Sources */,
 				41C143CD1F24269C00D0C38B /* ShopOpeningHour+Utils.swift in Sources */,
+				417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */,
+				41C143D61F25134300D0C38B /* CoreDataManager.swift in Sources */,
+				417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */,
+				417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */,
 				41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
