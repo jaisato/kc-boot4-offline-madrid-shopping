@@ -8,7 +8,16 @@
 
 import Foundation
 
-public enum Language: String {
-    case english = "en"
-    case spanish = "es"
+@objc
+public enum Language: Int {
+    case english, spanish
+    
+    public func name () -> String {
+        switch self {
+        case .english:
+            return "en"
+        case .spanish:
+            return "es"
+        }
+    }
 }

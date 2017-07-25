@@ -13,10 +13,15 @@ extension ShopKeywords {
     
     var language: Language {
         get {
-            return Language(rawValue: self._language)!
+            switch _language {
+            case Language.spanish.name():
+                return Language.spanish
+            default:
+                return Language.english
+            }
         }
         set {
-            self._language = newValue.rawValue
+            self._language = newValue.name()
         }
     }
     
@@ -24,8 +29,10 @@ extension ShopKeywords {
         self.init(context: context)
         
         self.language = language
+        
         if language == Language.spanish {
             self.text = (shopJson["keywords_es"] as! String)
+            return
         }
         
         self.text = (shopJson["keywords_en"] as! String)
