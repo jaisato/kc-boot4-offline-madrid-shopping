@@ -20,11 +20,11 @@ public class LoadShopImageInteractor {
     }
     
     public func execute(url: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        _manager.getShopImage(
-            urlString: url,
-            completion: { (image: UIImage) in
-                assert(Thread.current === Thread.main)
-                completion(image)
+        
+        _manager.getShopImage(urlString: url, completion: { (image: UIImage) in
+            assert(Thread.current === Thread.main)
+            completion(image)
+            
         }) { (error: Error) in
             onError(error)
         }

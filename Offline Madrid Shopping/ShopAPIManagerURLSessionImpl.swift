@@ -106,7 +106,30 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
         task.resume()
     }
     
+    public func getAllShopImages(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
+        
+        let _ = shopArray.map { (shop: Shop) -> Void in
+            if let imageUrl = shop.image?.url {
+                self.getShopImage(urlString: imageUrl, completion: completion, onError: onError)
+            }
+        }
+    }
+    
+    public func getAllShopLogos(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
+
+        let _ = shopArray.map { (shop: Shop) -> Void in
+            if let logoUrl = shop.logo?.url {
+                self.getShopImage(urlString: logoUrl, completion: completion, onError: onError)
+            }
+        }
+    }
+    
     public func saveShop(shopJson: ShopJson, completion: @escaping (Shop) -> Void, onError: @escaping ErrorClosure) {
+        let error = ShopAPIError.saveError("TO DO: implement on real server!")
+        onError(error)
+    }
+    
+    public func saveAllShop(shopJsonArray: ShopJsonArray, completion: @escaping ([Shop]) -> Void, onError: @escaping ErrorClosure) {
         let error = ShopAPIError.saveError("TO DO: implement on real server!")
         onError(error)
     }

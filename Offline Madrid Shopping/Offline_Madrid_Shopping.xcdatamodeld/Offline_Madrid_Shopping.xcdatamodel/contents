@@ -15,6 +15,7 @@
         <relationship name="openingHours" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopOpeningHour" inverseName="shop" inverseEntity="ShopOpeningHour" syncable="YES"/>
     </entity>
     <entity name="ShopDescription" representedClassName="ShopDescription" syncable="YES" codeGenerationType="class">
+        <attribute name="language" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="descriptions" inverseEntity="Shop" syncable="YES"/>
     </entity>
@@ -25,6 +26,7 @@
         <relationship name="logoShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="logo" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <entity name="ShopKeywords" representedClassName="ShopKeywords" syncable="YES" codeGenerationType="class">
+        <attribute name="language" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="keywords" inverseEntity="Shop" syncable="YES"/>
     </entity>
@@ -34,15 +36,16 @@
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="location" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <entity name="ShopOpeningHour" representedClassName="ShopOpeningHour" syncable="YES" codeGenerationType="class">
+        <attribute name="language" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="text" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="openingHours" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <elements>
         <element name="Shop" positionX="-801" positionY="24" width="128" height="223"/>
-        <element name="ShopDescription" positionX="-495" positionY="-27" width="128" height="73"/>
+        <element name="ShopDescription" positionX="-495" positionY="-27" width="128" height="90"/>
         <element name="ShopImage" positionX="-335" positionY="198" width="128" height="105"/>
-        <element name="ShopKeywords" positionX="-360" positionY="81" width="128" height="73"/>
+        <element name="ShopKeywords" positionX="-360" positionY="81" width="128" height="90"/>
         <element name="ShopLocation" positionX="-594" positionY="126" width="128" height="90"/>
-        <element name="ShopOpeningHour" positionX="-513" positionY="324" width="128" height="73"/>
+        <element name="ShopOpeningHour" positionX="-513" positionY="324" width="128" height="90"/>
     </elements>
 </model>

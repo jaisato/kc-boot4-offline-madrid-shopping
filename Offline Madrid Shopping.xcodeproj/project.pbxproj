@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414EF5B91F281D2000D5C281 /* SaveAllShopsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */; };
+		414EF5BB1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */; };
 		417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */; };
 		417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */; };
 		417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAllShopsInteractor.swift; sourceTree = "<group>"; };
+		414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAllShopImagesInteractor.swift; sourceTree = "<group>"; };
 		417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveShopInteractor.swift; sourceTree = "<group>"; };
 		417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManagerCoreDataImpl.swift; sourceTree = "<group>"; };
 		417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopImageInteractor.swift; sourceTree = "<group>"; };
@@ -223,7 +227,9 @@
 			children = (
 				41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */,
 				417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */,
+				414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */,
 				417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */,
+				414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -394,9 +400,11 @@
 				41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */,
 				41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */,
 				418FD11C1F2584860079B103 /* ShopImage+Utils.swift in Sources */,
+				414EF5BB1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift in Sources */,
 				41C143CF1F2426F200D0C38B /* ShopKeywords+Utils.swift in Sources */,
 				41C143CD1F24269C00D0C38B /* ShopOpeningHour+Utils.swift in Sources */,
 				417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */,
+				414EF5B91F281D2000D5C281 /* SaveAllShopsInteractor.swift in Sources */,
 				41C143D61F25134300D0C38B /* CoreDataManager.swift in Sources */,
 				417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */,
 				417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */,

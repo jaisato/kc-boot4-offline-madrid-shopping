@@ -35,61 +35,35 @@ class ShopLoaderViewController: UIViewController {
         print("Loading shops ...")
         activityIndicator.startAnimating()
         
-        let loadShopInteractor = LoadShopsInteractor()
-        loadShopInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
+        let loadShopsInteractor = LoadShopsInteractor()
+        loadShopsInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
             print("Completion: loaded shops \( shopJsonArray.count )")
             
             if shopJsonArray.count > 0 {
-                let saveShopInteractor = SaveShopInteractor()
-                let loadShopImageInteractor = LoadShopImageInteractor()
+                let loadAllShopImagesInteractor = LoadAllShopImagesInteractor(interactor: LoadShopImageInteractor(), coreDataManager: self.coreDataManager)
                 let container = self.coreDataManager.persistentContainer(dbName: self.coreDataManager.DB_NAME)
                 
-                for (index, shopJson) in shopJsonArray.enumerated() {
-                    // Save shop ...
-                    saveShopInteractor.execute(from: shopJson, completion: { (shop: Shop) in
-
-                        // Get shop image ...
-                        loadShopImageInteractor.execute(url: shopJson["img"] as! String, completion: { (image: UIImage) in
-                            shop.image = ShopImage(
-                                url: shopJson["img"] as! String,
-                                image: image,
-                                context: container.viewContext
-                            )
-                            
-                            self.coreDataManager.saveContext(context: container.viewContext)
-                        }, onError: { (error: Error) in
-                            self.activityIndicator.stopAnimating()
-                            self.createAlert(title: "Error loading shop image", message: error.localizedDescription)
-                        })
+                let saveAllShopsInteractor = SaveAllShopsInteractor()
+                saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
+                    
+                    loadAllShopImagesInteractor.execute(from: shops, completion: {
+                        // ...
+                        self.coreDataManager.saveContext(context: container.viewContext)
                         
-                        // Get shop logo ...
-                        loadShopImageInteractor.execute(url: shopJson["img"] as! String, completion: { (image: UIImage) in
-                            shop.logo = ShopImage(
-                                url: shopJson["logo_img"] as! String,
-                                image: image,
-                                context: container.viewContext
-                            )
-                            
-                            self.coreDataManager.saveContext(context: container.viewContext)
-                        }, onError: { (error: Error) in
-                            self.activityIndicator.stopAnimating()
-                            self.createAlert(title: "Error loading shop image", message: error.localizedDescription)
-                        })
+                        self.shops = shops
                         
-                        self.shops.append(shop)
-                        
-                        if index == shopJsonArray.endIndex - 1 {
-                            self.coreDataManager.saveContext(context: container.viewContext)
-                            
-                            self.activityIndicator.stopAnimating()
-                            self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
-                        }
-                        
+                        self.activityIndicator.stopAnimating()
+                        self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
                     }, onError: { (error: Error) in
                         self.activityIndicator.stopAnimating()
-                        self.createAlert(title: "Error saving shops", message: error.localizedDescription)
+                        self.createAlert(title: "Error loading shop images", message: error.localizedDescription)
                     })
-                }
+                    
+                }, onError: { (error: Error) in
+                    self.activityIndicator.stopAnimating()
+                    self.createAlert(title: "Error saving shops", message: error.localizedDescription)
+                })
+                
             } else {
                 // There's no shop
                 self.activityIndicator.stopAnimating()

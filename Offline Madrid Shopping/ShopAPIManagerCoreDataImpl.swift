@@ -25,6 +25,22 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
         // TODO: implement
     }
     
+    public func saveAllShop(shopJsonArray: ShopJsonArray, completion: @escaping ([Shop]) -> Void, onError: @escaping ErrorClosure) {
+        
+        let container = _manager.persistentContainer(dbName: self.DB_NAME)
+        
+        DispatchQueue.main.async {
+            let shops: [Shop] = shopJsonArray.map({ (shopJson: ShopJson) -> Shop in
+                return self.createShop(from: shopJson)
+            })
+            
+            self._manager.saveContext(context: container.viewContext)
+            
+            completion(shops)
+        }
+        
+    }
+    
     public func saveShop(shopJson: ShopJson, completion: @escaping (Shop) -> Void, onError: @escaping ErrorClosure) {
         let container = _manager.persistentContainer(dbName: self.DB_NAME)
         
@@ -44,6 +60,15 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
         let location = ShopLocation(from: shopJson, context: container.viewContext)
         shop.location = location
         
+        // Shop image urls
+        let shopImage = ShopImage(context: container.viewContext)
+        shopImage.url = shopJson["img"] as? String
+        shop.image = shopImage
+        
+        let shopLogo = ShopImage(context: container.viewContext)
+        shopLogo.url = shopJson["logo_img"] as? String
+        shop.logo = shopLogo
+        
         // Multivalue data (by language)
         let enDescription = ShopDescription(from: shopJson, language: Language.english, context: container.viewContext)
         let esDescription = ShopDescription(from: shopJson, language: Language.spanish, context: container.viewContext)
@@ -62,5 +87,23 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
     
     public func getShopImage(urlString: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
         // TODO: implement
+    }
+    
+    public func getAllShopImages(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
+        
+        let _ = shopArray.map { (shop: Shop) -> Void in
+            if let imageUrl = shop.image?.url {
+                self.getShopImage(urlString: imageUrl, completion: completion, onError: onError)
+            }
+        }
+    }
+    
+    public func getAllShopLogos(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
+        
+        let _ = shopArray.map { (shop: Shop) -> Void in
+            if let logoUrl = shop.logo?.url {
+                self.getShopImage(urlString: logoUrl, completion: completion, onError: onError)
+            }
+        }
     }
 }
