@@ -78,7 +78,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-um-GMV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-um-GMV">
                                 <rect key="frame" x="0.0" y="64" width="320" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="UC1-gH-CC5"/>
@@ -87,8 +87,8 @@
                                     <outlet property="delegate" destination="npU-kv-JiM" id="j6f-9T-Tzp"/>
                                 </connections>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YLo-Cz-c2L">
-                                <rect key="frame" x="0.0" y="303" width="320" height="264"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YLo-Cz-c2L">
+                                <rect key="frame" x="0.0" y="304" width="320" height="264"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="npU-kv-JiM" id="g6f-Jq-NET"/>
@@ -109,6 +109,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="qEX-um-GMV" id="7eD-Pp-20g"/>
+                        <outlet property="mapViewHeight" destination="UC1-gH-CC5" id="8du-CV-kFi"/>
                         <outlet property="tableView" destination="YLo-Cz-c2L" id="6VS-Ux-80U"/>
                     </connections>
                 </viewController>

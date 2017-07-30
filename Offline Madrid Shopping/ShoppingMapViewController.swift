@@ -9,17 +9,27 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CoreData
 
-class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
+class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
 
     private let TITLE = "Madrid Shopping Map"
     
     private let CELL_ID = "ShopCell"
     
+    private let ANNOTATION_ID = "AnnotationId"
+    
     var shops: [Shop]?
+    
+    var coreDataManager: CoreDataManager!
+    
+    var context: NSManagedObjectContext!
+    
+    var _fetchedResultsController: NSFetchedResultsController<Shop>? = nil
     
     var locationManager: CLLocationManager?
     
+    @IBOutlet weak var mapViewHeight: NSLayoutConstraint!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,9 +37,13 @@ class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         self.title = TITLE
+    
+        mapViewHeight.constant = view.bounds.height / 2
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        self.context = self.getContext(manager: self.coreDataManager)
         
         self.tableView.register(ShopCell.self, forCellReuseIdentifier: CELL_ID)
         
@@ -39,6 +53,35 @@ class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITabl
         initializeMapView()
         
         print("ShoppingMapViewController viewDidLoad: shops = \( shops?.count ?? 0)")
+    }
+    
+    func getContext(manager: CoreDataManager) -> NSManagedObjectContext {
+        let container = manager.persistentContainer(dbName: manager.DB_NAME)
+        return container.viewContext
+    }
+    
+    var fetchedResultsController: NSFetchedResultsController<Shop> {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        _fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: Shop.fetchRequestOrderedByName(),
+            managedObjectContext: self.context,
+            sectionNameKeyPath: nil,
+            cacheName: "Master"
+        )
+        
+        _fetchedResultsController?.delegate = self
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
     }
     
     private func configureLocationManager() {
@@ -51,33 +94,118 @@ class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITabl
     private func initializeMapView() {
         mapView.delegate = self
         
-        let madridLocation = CLLocation(latitude: 40.416775, longitude: -3.703790)
-        // self.mapView.setCenter(madridLocation.coordinate, animated: true)
+        let regionRadius: CLLocationDistance = 200
         
-        let region = MKCoordinateRegion(center: madridLocation.coordinate, span: MKCoordinateSpanMake(0.2, 0.2))
-        self.mapView.setRegion(region, animated: true)
+        let madridLocation = CLLocation(latitude: 40.416775, longitude: -3.703790)
+        
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(
+            madridLocation.coordinate,
+            regionRadius,
+            regionRadius
+        )
+        
+        mapView.setRegion(coordinateRegion, animated: true)
+        
+        self.addShopAnnotations()
+        
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
-    // MARK: - UITableView Data source
-
+    private func addShopAnnotations() {
+        print("Adding annotations")
+        for shop in fetchedResultsController.fetchedObjects! as [Shop] {
+            if let lat = shop.location?.latitude, let lon = shop.location?.longitude {
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                let annotation = ShopMapPin(coordinate: coordinate, shop: shop)
+                self.mapView.addAnnotation(annotation)
+            
+                print("Annotation added: lat \(coordinate.latitude), lon \(coordinate.longitude)")
+            }
+        }
+    }
+    
+    // MARK: TableView Data Source
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.shops?.count ?? 0
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let shopCell: ShopCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! ShopCell
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as? ShopCell {
-            shopCell = cell
+        let shop = self.fetchedResultsController.object(at: indexPath)
+        cell.loadData(shop: shop)
+        
+        return cell
+    }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let shop = self.fetchedResultsController.object(at: indexPath)
+        goToShopDetail(shop: shop)
+    }
+    
+    // MARK: - Map
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? ShopMapPin else { return nil }
+        
+        var annotationView: MKPinAnnotationView?
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ANNOTATION_ID) {
+            annotationView = dequeuedAnnotationView as? MKPinAnnotationView
+            annotationView?.annotation = annotation
         } else {
-            shopCell = ShopCell(style: .default, reuseIdentifier: CELL_ID)
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: ANNOTATION_ID)
         }
         
-        if let shop: Shop = shops?[indexPath.row] {
-            shopCell.loadData(shop: shop)
+        if let annotationView = annotationView {
+            configureAnnotationView(annotationView)
         }
         
-        return shopCell
+        return annotationView
+    }
+    
+    private func configureAnnotationView(_ annotationView: MKPinAnnotationView) {
+        guard let annotation = annotationView.annotation as? ShopMapPin else { return }
+        
+        annotationView.pinTintColor = .blue
+        annotationView.canShowCallout = true
+        annotationView.calloutOffset = CGPoint(x: -5, y: 5)
+        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        imageView.image = annotation.logo()
+        annotationView.leftCalloutAccessoryView = imageView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? ShopMapPin else { return }
+        
+        mapView.setCenter(annotation.coordinate, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        let _ = view.subviews.map { $0.removeFromSuperview() }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation as? ShopMapPin else { return }
+        
+        if control == view.rightCalloutAccessoryView {
+            goToShopDetail(shop: annotation.shop)
+        }
+    }
+
+    func goToShopDetail(shop: Shop) {
+        print("Go to shop detail")
+        
+        let shopDetailVC = ShopDetailViewController()
+        shopDetailVC.shop = shop
+        
+        self.navigationController?.pushViewController(shopDetailVC, animated: true)
     }
 }
 

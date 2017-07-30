@@ -13,7 +13,7 @@ extension ShopLocation {
     public convenience init(from shopJson: ShopJson, context: NSManagedObjectContext) {
         self.init(context: context)
         
-        let allowedChars = "01234567890."
+        let allowedChars = "-01234567890."
         
         var latString = shopJson["gps_lat"] as! String
         latString = String(latString.characters.filter { allowedChars.characters.contains($0) })

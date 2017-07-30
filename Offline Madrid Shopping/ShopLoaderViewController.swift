@@ -90,6 +90,7 @@ class ShopLoaderViewController: UIViewController {
         case self.SHOPPING_MAP_SEGUE:
             let shoppingMapVC = segue.destination as! ShoppingMapViewController
             shoppingMapVC.shops = self.shops
+            shoppingMapVC.coreDataManager = self.coreDataManager
             break
         default:
             // Nothing to do

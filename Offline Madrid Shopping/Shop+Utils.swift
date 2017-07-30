@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 public typealias ShopJson = Dictionary<String, Any>
 public typealias ShopJsonArray = [ShopJson]
@@ -42,5 +43,50 @@ extension Shop {
         self.phone = shopJson["telephone"] as? String
         self.email = shopJson["email"] as? String
         self.url = shopJson["url"] as? String
+    }
+    
+    func logoImage() -> UIImage? {
+        var image: UIImage? = nil
+        if let imageData = self.logo?.data as Data? {
+            image = UIImage(data: imageData)
+        }
+        
+        guard ((image) != nil) else {
+            return UIImage(named: "shop-icon")
+        }
+        
+        return image
+    }
+    
+    func hours(in language: Language) -> ShopOpeningHour? {
+        guard let shopHours: [ShopOpeningHour] = self.openingHours?.allObjects as? [ShopOpeningHour] else {
+            return nil
+        }
+        
+        return shopHours.filter({ (openingHour: ShopOpeningHour) -> Bool in
+            return openingHour.language == language.name()
+        }).first
+    }
+    
+    func description(in language: Language) -> ShopDescription? {
+        guard let shopDescriptions: [ShopDescription] = self.descriptions?.allObjects as? [ShopDescription] else {
+            return nil
+        }
+        
+        return shopDescriptions.filter({ (description: ShopDescription) -> Bool in
+            return description.language == language.name()
+        }).first
+    }
+    
+    class func fetchRequestOrderedByName() -> NSFetchRequest<Shop> {
+        let fetchRequest: NSFetchRequest<Shop> = Shop.fetchRequest()
+        fetchRequest.fetchBatchSize = 20
+        
+        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let addressSortDescriptor = NSSortDescriptor(key: "address", ascending: true)
+        
+        fetchRequest.sortDescriptors = [nameSortDescriptor, addressSortDescriptor]
+        
+        return fetchRequest
     }
 }
