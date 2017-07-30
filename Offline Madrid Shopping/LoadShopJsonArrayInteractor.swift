@@ -1,14 +1,14 @@
 //
-//  LoadShopImageInteractor.swift
+//  LoadShopJsonArrayInteractor.swift
 //  Offline Madrid Shopping
 //
-//  Created by Jairo on 24/7/17.
+//  Created by Jairo on 22/7/17.
 //  Copyright © 2017 JST. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-public class LoadShopImageInteractor {
+public class LoadShopJsonArrayInteractor {
     private let _manager: ShopAPIManager
     
     public init(manager: ShopAPIManager) {
@@ -19,11 +19,10 @@ public class LoadShopImageInteractor {
         self.init(manager: ShopAPIManagerURLSessionImpl())
     }
     
-    public func execute(url: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        _manager.getShopImage(urlString: url, completion: { (image: UIImage) in
+    public func execute(completion: @escaping GetShopJsonArrayCompletionClosure, onError: @escaping ErrorClosure) {
+        _manager.getShops(completion: { (shops: ShopJsonArray) in
             assert(Thread.current === Thread.main)
-            completion(image)
-            
+            completion(shops)
         }) { (error: Error) in
             onError(error)
         }

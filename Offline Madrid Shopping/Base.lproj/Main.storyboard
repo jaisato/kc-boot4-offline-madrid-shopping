@@ -30,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlG-Mv-JPb">
-                                <rect key="frame" x="117.5" y="369" width="86" height="32"/>
+                                <rect key="frame" x="117" y="369" width="86" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Load Shops">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="52l-7X-rk3">
-                                <rect key="frame" x="142" y="417" width="37" height="37"/>
+                                <rect key="frame" x="141.5" y="417" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -77,12 +77,44 @@
                     <view key="view" contentMode="scaleToFill" id="pCt-A7-KEK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-um-GMV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="UC1-gH-CC5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="npU-kv-JiM" id="j6f-9T-Tzp"/>
+                                </connections>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YLo-Cz-c2L">
+                                <rect key="frame" x="0.0" y="303" width="320" height="264"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="npU-kv-JiM" id="g6f-Jq-NET"/>
+                                    <outlet property="delegate" destination="npU-kv-JiM" id="iQg-3f-M9N"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YLo-Cz-c2L" secondAttribute="trailing" id="3dg-4F-gjc"/>
+                            <constraint firstItem="YLo-Cz-c2L" firstAttribute="top" secondItem="qEX-um-GMV" secondAttribute="bottom" id="BYI-Zb-dFX"/>
+                            <constraint firstAttribute="trailing" secondItem="qEX-um-GMV" secondAttribute="trailing" id="QJ0-Pn-Uar"/>
+                            <constraint firstAttribute="leading" secondItem="qEX-um-GMV" secondAttribute="leading" id="SM5-Ur-Axf"/>
+                            <constraint firstItem="qEX-um-GMV" firstAttribute="top" secondItem="dH0-Hb-yvo" secondAttribute="bottom" id="nti-ME-Jr5"/>
+                            <constraint firstItem="4QJ-eN-JBN" firstAttribute="top" secondItem="YLo-Cz-c2L" secondAttribute="bottom" id="uiD-iS-HQP"/>
+                            <constraint firstAttribute="leading" secondItem="YLo-Cz-c2L" secondAttribute="leading" id="wPW-ms-D5e"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="qEX-um-GMV" id="7eD-Pp-20g"/>
+                        <outlet property="tableView" destination="YLo-Cz-c2L" id="6VS-Ux-80U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W84-Hl-Wjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="37"/>
+            <point key="canvasLocation" x="1072.5" y="36.971830985915496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Veu-xG-cye">

@@ -1,14 +1,14 @@
 //
-//  LoadShopsInteractor.swift
+//  LoadShopArrayInteractor.swift
 //  Offline Madrid Shopping
 //
-//  Created by Jairo on 22/7/17.
+//  Created by Jairo on 26/7/17.
 //  Copyright © 2017 JST. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
-public class LoadShopsInteractor {
+public class LoadShopArrayInteractor {
     private let _manager: ShopAPIManager
     
     public init(manager: ShopAPIManager) {
@@ -16,13 +16,12 @@ public class LoadShopsInteractor {
     }
     
     public convenience init() {
-        self.init(manager: ShopAPIManagerURLSessionImpl())
+        self.init(manager: ShopAPIManagerCoreDataImpl(coreDataManager: CoreDataManager()))
     }
     
-    public func execute(completion: @escaping GetShopsCompletionClosure, onError: @escaping ErrorClosure) {
-        _manager.getShops(completion: { (shops: ShopJsonArray) in
+    public func execute(completion: @escaping ([Shop]) -> Void, onError: @escaping ErrorClosure) {
+        _manager.getShops(completion: { (shops: [Shop]) in
             assert(Thread.current === Thread.main)
-            
             completion(shops)
         }) { (error: Error) in
             onError(error)

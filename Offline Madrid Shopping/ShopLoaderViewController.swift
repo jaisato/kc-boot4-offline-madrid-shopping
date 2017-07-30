@@ -28,48 +28,55 @@ class ShopLoaderViewController: UIViewController {
     }
     
     @IBAction func loadShopsTapped(_ sender: Any) {
-        self.loadShops()
+        loadShops()
     }
     
-    func loadShops() {
+    private func loadShops() {
         print("Loading shops ...")
         activityIndicator.startAnimating()
         
-        let loadShopsInteractor = LoadShopsInteractor()
-        loadShopsInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
-            print("Completion: loaded shops \( shopJsonArray.count )")
+        let loadShopArrayInteractor = LoadShopArrayInteractor()
+        loadShopArrayInteractor.execute(completion: { (shops: [Shop]) in
+            self.shops = shops
             
-            if shopJsonArray.count > 0 {
-                let loadAllShopImagesInteractor = LoadAllShopImagesInteractor(interactor: LoadShopImageInteractor(), coreDataManager: self.coreDataManager)
-                let container = self.coreDataManager.persistentContainer(dbName: self.coreDataManager.DB_NAME)
-                
-                let saveAllShopsInteractor = SaveAllShopsInteractor()
-                saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
-                    
-                    loadAllShopImagesInteractor.execute(from: shops, completion: {
-                        // ...
-                        self.coreDataManager.saveContext(context: container.viewContext)
-                        
-                        self.shops = shops
-                        
-                        self.activityIndicator.stopAnimating()
-                        self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
-                    }, onError: { (error: Error) in
-                        self.activityIndicator.stopAnimating()
-                        self.createAlert(title: "Error loading shop images", message: error.localizedDescription)
-                    })
-                    
-                }, onError: { (error: Error) in
-                    self.activityIndicator.stopAnimating()
-                    self.createAlert(title: "Error saving shops", message: error.localizedDescription)
-                })
-                
-            } else {
-                // There's no shop
-                self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
+            guard self.shops.count > 0 else {
+                self.downloadShops()
+                return
             }
             
+            self.activityIndicator.stopAnimating()
+            self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
+        }) { (error: Error) in
+            self.activityIndicator.stopAnimating()
+            self.createAlert(title: "Error loading shops", message: error.localizedDescription)
+        }
+    }
+    
+    private func downloadShops() {
+        print("Downloading shops ...")
+        activityIndicator.startAnimating()
+        
+        let loadShopJsonArrayInteractor = LoadShopJsonArrayInteractor()
+        loadShopJsonArrayInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
+            print("Completion: shops downloaded \( shopJsonArray.count )")
+            
+            guard shopJsonArray.count > 0 else {
+                self.activityIndicator.stopAnimating()
+                self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
+                return
+            }
+            
+            let saveAllShopsInteractor = SaveAllShopsInteractor()
+            saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
+                self.shops = shops
+                
+                self.activityIndicator.stopAnimating()
+                self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
+                
+            }, onError: { (error: Error) in
+                self.activityIndicator.stopAnimating()
+                self.createAlert(title: "Error saving shops", message: error.localizedDescription)
+            })
         }) { (error: Error) in
             self.activityIndicator.stopAnimating()
             self.createAlert(title: "Error loading shops", message: error.localizedDescription)
@@ -83,7 +90,6 @@ class ShopLoaderViewController: UIViewController {
         case self.SHOPPING_MAP_SEGUE:
             let shoppingMapVC = segue.destination as! ShoppingMapViewController
             shoppingMapVC.shops = self.shops
-            
             break
         default:
             // Nothing to do

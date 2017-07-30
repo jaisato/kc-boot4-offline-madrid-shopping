@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		414EF5B91F281D2000D5C281 /* SaveAllShopsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */; };
 		414EF5BB1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */; };
+		4178E6301F29295100E87F06 /* LoadShopArrayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */; };
+		4178E6331F2D1B9800E87F06 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178E6311F2D1B9800E87F06 /* ShopCell.swift */; };
+		4178E6341F2D1B9800E87F06 /* ShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178E6321F2D1B9800E87F06 /* ShopCell.xib */; };
 		417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */; };
 		417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */; };
 		417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */; };
@@ -30,7 +33,7 @@
 		41C3817D1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3817C1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift */; };
 		41C381881F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */; };
 		41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */; };
-		41F60C9C1F23D72400BF8307 /* LoadShopsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */; };
+		41F60C9C1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */; };
 		41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */; };
 		41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */; };
 		41F60CA21F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */; };
@@ -57,6 +60,9 @@
 /* Begin PBXFileReference section */
 		414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAllShopsInteractor.swift; sourceTree = "<group>"; };
 		414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAllShopImagesInteractor.swift; sourceTree = "<group>"; };
+		4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopArrayInteractor.swift; sourceTree = "<group>"; };
+		4178E6311F2D1B9800E87F06 /* ShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		4178E6321F2D1B9800E87F06 /* ShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCell.xib; sourceTree = "<group>"; };
 		417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveShopInteractor.swift; sourceTree = "<group>"; };
 		417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManagerCoreDataImpl.swift; sourceTree = "<group>"; };
 		417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopImageInteractor.swift; sourceTree = "<group>"; };
@@ -84,7 +90,7 @@
 		41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline_Madrid_ShoppingUITests.swift; sourceTree = "<group>"; };
 		41C381891F23B71A00149609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingMapViewController.swift; sourceTree = "<group>"; };
-		41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopsInteractor.swift; sourceTree = "<group>"; };
+		41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopJsonArrayInteractor.swift; sourceTree = "<group>"; };
 		41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManager.swift; sourceTree = "<group>"; };
 		41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shop+Utils.swift"; sourceTree = "<group>"; };
 		41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManagerURLSessionImpl.swift; sourceTree = "<group>"; };
@@ -195,6 +201,8 @@
 			children = (
 				41C381681F23B71A00149609 /* Main.storyboard */,
 				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
+				4178E6311F2D1B9800E87F06 /* ShopCell.swift */,
+				4178E6321F2D1B9800E87F06 /* ShopCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -225,7 +233,8 @@
 		41F60C991F23D6A100BF8307 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				41F60C9B1F23D72400BF8307 /* LoadShopsInteractor.swift */,
+				41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */,
+				4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */,
 				417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */,
 				414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */,
 				417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */,
@@ -364,6 +373,7 @@
 				41C381721F23B71A00149609 /* LaunchScreen.storyboard in Resources */,
 				41C3816F1F23B71A00149609 /* Assets.xcassets in Resources */,
 				41C3816A1F23B71A00149609 /* Main.storyboard in Resources */,
+				4178E6341F2D1B9800E87F06 /* ShopCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,8 +405,9 @@
 				41C381651F23B71A00149609 /* AppDelegate.swift in Sources */,
 				41C3816D1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld in Sources */,
 				418FD11A1F2575930079B103 /* ShopLocation+Utils.swift in Sources */,
-				41F60C9C1F23D72400BF8307 /* LoadShopsInteractor.swift in Sources */,
+				41F60C9C1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift in Sources */,
 				41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */,
+				4178E6331F2D1B9800E87F06 /* ShopCell.swift in Sources */,
 				41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */,
 				41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */,
 				418FD11C1F2584860079B103 /* ShopImage+Utils.swift in Sources */,
@@ -406,6 +417,7 @@
 				417FB2191F25302A00663FB2 /* SaveShopInteractor.swift in Sources */,
 				414EF5B91F281D2000D5C281 /* SaveAllShopsInteractor.swift in Sources */,
 				41C143D61F25134300D0C38B /* CoreDataManager.swift in Sources */,
+				4178E6301F29295100E87F06 /* LoadShopArrayInteractor.swift in Sources */,
 				417FB21D1F2570D000663FB2 /* LoadShopImageInteractor.swift in Sources */,
 				417FB21B1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift in Sources */,
 				41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */,
