@@ -58,6 +58,19 @@ extension Shop {
         return image
     }
     
+    func shopImage() -> UIImage? {
+        var image: UIImage? = nil
+        if let imageData = self.image?.data as Data? {
+            image = UIImage(data: imageData)
+        }
+        
+        guard ((image) != nil) else {
+            return UIImage(named: "shop-backgound")
+        }
+        
+        return image
+    }
+    
     func hours(in language: Language) -> ShopOpeningHour? {
         guard let shopHours: [ShopOpeningHour] = self.openingHours?.allObjects as? [ShopOpeningHour] else {
             return nil

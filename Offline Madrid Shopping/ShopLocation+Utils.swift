@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 extension ShopLocation {
 
@@ -25,5 +26,18 @@ extension ShopLocation {
         
         self.latitude = latitude!
         self.longitude = longitude!
+    }
+    
+    func locationImage() -> UIImage? {
+        var image: UIImage? = nil
+        if let imageData = self.image?.data as Data? {
+            image = UIImage(data: imageData)
+        }
+        
+        guard ((image) != nil) else {
+            return UIImage(named: "staticmap-no-location")
+        }
+        
+        return image
     }
 }

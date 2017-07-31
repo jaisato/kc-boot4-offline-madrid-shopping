@@ -25,14 +25,18 @@ class ShopDetailViewController: UIViewController {
     
         title = shop.name
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        
         loadShopData()
     }
 
     private func loadShopData() {
+        shopMapImage.image = shop.location?.locationImage()
         logoImage.image = shop.logoImage()
         shopNameLabel.text = shop.name
         shopAddressLabel.text = shop.address
         shopHoursLabel.text = shop.hours(in: Language.spanish)?.text
         shopDescriptionLabel.text = shop.description(in: Language.spanish)?.text
+        shopImageView.image = shop.shopImage()
     }
 }
