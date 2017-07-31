@@ -9,20 +9,16 @@
 import UIKit
 
 class ShopLoaderViewController: UIViewController {
-
     private let TITLE = "Offline Madrid Shopping"
-   
     private let SHOPPING_MAP_SEGUE = "goToShoppingMapSegue"
     
     private var shops: [Shop] = []
-    
     private var coreDataManager: CoreDataManager!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.coreDataManager = CoreDataManager()
         self.title = TITLE
     }
@@ -40,8 +36,7 @@ class ShopLoaderViewController: UIViewController {
             self.shops = shops
             
             guard self.shops.count > 0 else {
-                self.downloadShops()
-                return
+                return self.downloadShops()
             }
             
             self.activityIndicator.stopAnimating()
@@ -57,29 +52,50 @@ class ShopLoaderViewController: UIViewController {
         activityIndicator.startAnimating()
         
         let loadShopJsonArrayInteractor = LoadShopJsonArrayInteractor()
-        loadShopJsonArrayInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
-            print("Completion: shops downloaded \( shopJsonArray.count )")
-            
-            guard shopJsonArray.count > 0 else {
-                self.activityIndicator.stopAnimating()
-                self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
-                return
-            }
-            
-            let saveAllShopsInteractor = SaveAllShopsInteractor()
-            saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
-                self.shops = shops
-                
-                self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
-                
-            }, onError: { (error: Error) in
-                self.activityIndicator.stopAnimating()
-                self.createAlert(title: "Error saving shops", message: error.localizedDescription)
-            })
-        }) { (error: Error) in
+        loadShopJsonArrayInteractor.execute(
+            completion: saveShops(shopJsonArray:))
+        { (error: Error) in
             self.activityIndicator.stopAnimating()
             self.createAlert(title: "Error loading shops", message: error.localizedDescription)
+        }
+    }
+
+    private func saveShops(shopJsonArray: ShopJsonArray) {
+        print("Completion: shops downloaded \( shopJsonArray.count )")
+        guard shopJsonArray.count > 0 else {
+            self.activityIndicator.stopAnimating()
+            self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
+            return
+        }
+    
+        saveAllShops(shopJsonArray: shopJsonArray)
+    }
+
+    private func saveAllShops(shopJsonArray: ShopJsonArray) {
+        let saveAllShopsInteractor = SaveAllShopsInteractor()
+        saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
+            self.shops = shops
+            self.saveAllShopImages(shops: shops)
+        },
+        onError: { (error: Error) in
+            self.activityIndicator.stopAnimating()
+            self.createAlert(title: "Error saving shops", message: error.localizedDescription)
+        })
+    }
+    
+    private func saveAllShopImages(shops: [Shop]) {
+        let loadAllShopImagesInteractor = LoadAllShopImagesInteractor(
+            interactor: LoadShopImageInteractor(),
+            coreDataManager: CoreDataManager()
+        )
+        
+        loadAllShopImagesInteractor.execute(from: shops, completion: {
+            self.shops = shops
+            self.activityIndicator.stopAnimating()
+            self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
+        }) { (error: Error) in
+            self.activityIndicator.stopAnimating()
+            self.createAlert(title: "Error loading shop images", message: error.localizedDescription)
         }
     }
     
