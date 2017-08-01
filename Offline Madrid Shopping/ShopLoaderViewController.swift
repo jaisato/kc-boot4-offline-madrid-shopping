@@ -95,7 +95,7 @@ class ShopLoaderViewController: UIViewController {
             self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
         }) { (error: Error) in
             self.activityIndicator.stopAnimating()
-            self.createAlert(title: "Error loading shop images", message: error.localizedDescription)
+            self.createAlert(title: "Error loading shop images", message: "\(error)")
         }
     }
     

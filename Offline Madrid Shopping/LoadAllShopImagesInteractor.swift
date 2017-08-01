@@ -33,8 +33,12 @@ public class LoadAllShopImagesInteractor {
     private func loadShopImage(shop: Shop, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
         guard let imageUrl = shop.image?.url else { return }
         
+        print("Loading shop image: \(imageUrl)")
+        
         _loadShopImageInteractor.execute(url: imageUrl, completion: { (image: UIImage) in
-            shop.image?.data = UIImagePNGRepresentation(image) as NSData?
+            shop.image!.data = UIImagePNGRepresentation(image) as NSData!
+            
+            print("Loading shop image: \(imageUrl)")
             
             self.numberOfImages = self.numberOfImages + 1
             self._coreDataManager.saveContext(context: self._container.viewContext)
@@ -43,15 +47,20 @@ public class LoadAllShopImagesInteractor {
                 completion()
             }
         }, onError: { (error: Error) in
-            onError(error)
+            self.numberOfImages = self.numberOfImages + 1
+            print("\(error)")
         })
     }
     
     func loadShopLogo(shop: Shop, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
         guard let logoUrl = shop.logo?.url else { return }
         
+        print("Loading shop logo: \(logoUrl)")
+        
         _loadShopImageInteractor.execute(url: logoUrl, completion: { (image: UIImage) in
-            shop.logo?.data = UIImagePNGRepresentation(image) as NSData?
+            shop.logo!.data = UIImagePNGRepresentation(image) as NSData!
+            
+            print("Storing shop logo: \(logoUrl)")
             
             self.numberOfLogos = self.numberOfLogos + 1
             self._coreDataManager.saveContext(context: self._container.viewContext)
@@ -60,7 +69,8 @@ public class LoadAllShopImagesInteractor {
                 completion()
             }
         }, onError: { (error: Error) in
-            onError(error)
+            self.numberOfLogos = self.numberOfLogos + 1
+            print("\(error)")
         })
     }
 }
