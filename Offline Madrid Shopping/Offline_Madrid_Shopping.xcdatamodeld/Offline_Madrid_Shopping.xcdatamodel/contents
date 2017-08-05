@@ -8,10 +8,10 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="descriptions" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopDescription" inverseName="shop" inverseEntity="ShopDescription" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="imageShop" inverseEntity="ShopImage" syncable="YES"/>
+        <relationship name="image" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="imageShop" inverseEntity="ShopImage" syncable="YES"/>
         <relationship name="keywords" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopKeywords" inverseName="shop" inverseEntity="ShopKeywords" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="ShopLocation" inverseName="shop" inverseEntity="ShopLocation" syncable="YES"/>
-        <relationship name="logo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="logoShop" inverseEntity="ShopImage" syncable="YES"/>
+        <relationship name="logo" maxCount="1" deletionRule="Cascade" destinationEntity="ShopImage" inverseName="logoShop" inverseEntity="ShopImage" syncable="YES"/>
         <relationship name="openingHours" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ShopOpeningHour" inverseName="shop" inverseEntity="ShopOpeningHour" syncable="YES"/>
     </entity>
     <entity name="ShopDescription" representedClassName="ShopDescription" syncable="YES" codeGenerationType="class">
@@ -20,7 +20,7 @@
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="descriptions" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <entity name="ShopImage" representedClassName="ShopImage" syncable="YES" codeGenerationType="class">
-        <attribute name="data" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="imageShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="image" inverseEntity="Shop" syncable="YES"/>
         <relationship name="logoShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="logo" inverseEntity="Shop" syncable="YES"/>
@@ -43,7 +43,7 @@
         <relationship name="shop" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="openingHours" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Shop" positionX="-801" positionY="24" width="128" height="223"/>
+        <element name="Shop" positionX="-801" positionY="24" width="128" height="225"/>
         <element name="ShopDescription" positionX="-495" positionY="-27" width="128" height="90"/>
         <element name="ShopImage" positionX="-335" positionY="198" width="128" height="120"/>
         <element name="ShopKeywords" positionX="-360" positionY="81" width="128" height="90"/>

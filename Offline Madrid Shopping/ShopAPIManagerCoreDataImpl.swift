@@ -65,11 +65,15 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
         shop.location = location
         
         // Shop images
-        if let image = shopJson["img"] as? String {
-            shop.image = ShopImage(url: image, context: container.viewContext)
+        if let imageUrl = shopJson["img"] as? String,
+            let image = UIImage(named: "shop-background"),
+            let imageData = UIImageJPEGRepresentation(image, 1) as NSData? {
+            shop.image = ShopImage(url: imageUrl, data: imageData, context: container.viewContext)
         }
-        if let logo = shopJson["logo_img"] as? String {
-            shop.logo = ShopImage(url: logo, context: container.viewContext)
+        if let logoUrl = shopJson["logo_img"] as? String,
+            let logo = UIImage(named: "shop-icon"),
+            let logoData = UIImageJPEGRepresentation(logo, 1) as NSData? {
+            shop.logo = ShopImage(url: logoUrl, data: logoData, context: container.viewContext)
         }
         
         // Multivalue data (by language)

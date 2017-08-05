@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 public typealias ErrorClosure = (Error) -> Void
 public typealias GetShopJsonArrayCompletionClosure = (ShopJsonArray) -> Void

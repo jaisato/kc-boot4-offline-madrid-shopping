@@ -13,6 +13,7 @@ public class LoadAllShopImagesInteractor {
     private let _loadShopImageInteractor: LoadShopImageInteractor
     private let _coreDataManager: CoreDataManager
     private let _container: NSPersistentContainer
+    private var _shops: [Shop]
     
     private var numberOfImages: Int = 0
     private var numberOfLogos: Int = 0
@@ -21,24 +22,26 @@ public class LoadAllShopImagesInteractor {
         _loadShopImageInteractor = interactor
         _coreDataManager = coreDataManager
         _container = _coreDataManager.persistentContainer(dbName: _coreDataManager.DB_NAME)
+        _shops = []
     }
     
     public func execute(from shopArray: [Shop], completion: @escaping (Void) -> Void, onError: @escaping ErrorClosure) {
-        for shop in shopArray {
-            loadShopImage(shop: shop, shopsNumber: shopArray.count, completion, onError)
-            loadShopLogo(shop: shop, shopsNumber: shopArray.count, completion, onError)
+        assert(Thread.current === Thread.main)
+        
+        self._shops = shopArray
+        for (index, _) in self._shops.enumerated() {
+            self.loadShopImage(shopItem: index, shopsNumber: shopArray.count, completion, onError)
+            self.loadShopLogo(shopItem: index, shopsNumber: shopArray.count, completion, onError)
         }
     }
     
-    private func loadShopImage(shop: Shop, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
-        guard let imageUrl = shop.image?.url else { return }
+    public func loadShopImage(shopItem: Int, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
+        guard let shopImage: ShopImage = self._shops[shopItem].image, let _ = shopImage.url else { return }
         
-        print("Loading shop image: \(imageUrl)")
-        
-        _loadShopImageInteractor.execute(url: imageUrl, completion: { (image: UIImage) in
-            shop.image!.data = UIImagePNGRepresentation(image) as NSData!
+        _loadShopImageInteractor.execute(shopImage: self._shops[shopItem].image!, completion: { (image: ShopImage) in
+            assert(Thread.current === Thread.main)
             
-            print("Loading shop image: \(imageUrl)")
+            self._shops[shopItem].image = image
             
             self.numberOfImages = self.numberOfImages + 1
             self._coreDataManager.saveContext(context: self._container.viewContext)
@@ -52,15 +55,13 @@ public class LoadAllShopImagesInteractor {
         })
     }
     
-    func loadShopLogo(shop: Shop, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
-        guard let logoUrl = shop.logo?.url else { return }
+    public func loadShopLogo(shopItem: Int, shopsNumber: Int, _ completion: @escaping (Void) -> Void, _ onError: @escaping ErrorClosure) {
+        guard let shopLogo: ShopImage = self._shops[shopItem].logo, let _ = shopLogo.url else { return }
         
-        print("Loading shop logo: \(logoUrl)")
-        
-        _loadShopImageInteractor.execute(url: logoUrl, completion: { (image: UIImage) in
-            shop.logo!.data = UIImagePNGRepresentation(image) as NSData!
+        _loadShopImageInteractor.execute(shopImage: self._shops[shopItem].logo!, completion: { (image: ShopImage) in
+            assert(Thread.current === Thread.main)
             
-            print("Storing shop logo: \(logoUrl)")
+            self._shops[shopItem].logo = image
             
             self.numberOfLogos = self.numberOfLogos + 1
             self._coreDataManager.saveContext(context: self._container.viewContext)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ShopLoaderViewController: UIViewController {
     private let TITLE = "Offline Madrid Shopping"
@@ -75,7 +76,7 @@ class ShopLoaderViewController: UIViewController {
         let saveAllShopsInteractor = SaveAllShopsInteractor()
         saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
             self.shops = shops
-            self.saveAllShopImages(shops: shops)
+            self.saveAllShopImages(shops: self.shops)
         },
         onError: { (error: Error) in
             self.activityIndicator.stopAnimating()
@@ -91,6 +92,7 @@ class ShopLoaderViewController: UIViewController {
         
         loadAllShopImagesInteractor.execute(from: shops, completion: {
             self.shops = shops
+            
             self.activityIndicator.stopAnimating()
             self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
         }) { (error: Error) in

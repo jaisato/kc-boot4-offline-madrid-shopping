@@ -10,14 +10,11 @@ import CoreData
 import UIKit
 
 extension ShopImage {
-    public convenience init(url: String, image: UIImage? = nil, context: NSManagedObjectContext) {
+    
+    public convenience init(url: String, data: NSData, context: NSManagedObjectContext) {
         self.init(context: context)
         
         self.url = url
-        
-        if let img = image,
-           let data = UIImagePNGRepresentation(img) as NSData? {
-            self.data = data
-        }
+        self.data = data
     }
 }

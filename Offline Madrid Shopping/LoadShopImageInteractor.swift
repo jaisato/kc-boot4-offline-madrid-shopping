@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 public class LoadShopImageInteractor {
     private let _manager: ShopAPIManager
+    private var _shopImage: ShopImage? = nil
     
     public init(manager: ShopAPIManager) {
         _manager = manager
@@ -19,11 +21,18 @@ public class LoadShopImageInteractor {
         self.init(manager: ShopAPIManagerURLSessionImpl())
     }
     
-    public func execute(url: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        _manager.getShopImage(urlString: url, completion: { (image: UIImage) in
+    public func execute(shopImage: ShopImage, completion: @escaping (ShopImage) -> Void, onError: @escaping ErrorClosure) {
+        self._shopImage = shopImage
+        
+        _manager.getShopImage(urlString: self._shopImage!.url!, completion: { (image: UIImage) in
             assert(Thread.current === Thread.main)
-            completion(image)
             
+            if let imageData = UIImageJPEGRepresentation(image, 1) as NSData? {
+                self._shopImage!.data = imageData
+            }
+
+            completion(self._shopImage!)
+
         }) { (error: Error) in
             onError(error)
         }

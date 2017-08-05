@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
     private let GET_SHOPS_URL = "http://madrid-shops.com/json_new/getShops.php"
@@ -60,14 +61,18 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
                 return onError(error)
             }
             
-            guard let data = data else {
+            guard let imgData = data else {
                 let apiError = ShopAPIError.downloadError("NO image data")
                 return onError(apiError)
             }
             
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let image = UIImage(data: imgData) {
                     completion(image)
+                }
+                else {
+                    let apiError = ShopAPIError.downloadError("Image creation error")
+                    onError(apiError)
                 }
             }
         }
