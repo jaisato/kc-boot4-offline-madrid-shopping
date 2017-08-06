@@ -143,7 +143,7 @@
 			children = (
 				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
 			);
-			name = Shop;
+			path = Shop;
 			sourceTree = "<group>";
 		};
 		412BD7311F378FE300AF710A /* ShopDescription */ = {
@@ -151,7 +151,7 @@
 			children = (
 				41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */,
 			);
-			name = ShopDescription;
+			path = ShopDescription;
 			sourceTree = "<group>";
 		};
 		412BD7321F378FF700AF710A /* ShopKeywords */ = {
@@ -159,7 +159,7 @@
 			children = (
 				41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */,
 			);
-			name = ShopKeywords;
+			path = ShopKeywords;
 			sourceTree = "<group>";
 		};
 		412BD7331F37900D00AF710A /* ShopOpenningHours */ = {
@@ -167,7 +167,7 @@
 			children = (
 				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
 			);
-			name = ShopOpenningHours;
+			path = ShopOpenningHours;
 			sourceTree = "<group>";
 		};
 		412BD7341F37902C00AF710A /* ShopLocation */ = {
@@ -175,7 +175,7 @@
 			children = (
 				418FD1191F2575930079B103 /* ShopLocation+Utils.swift */,
 			);
-			name = ShopLocation;
+			path = ShopLocation;
 			sourceTree = "<group>";
 		};
 		412BD7351F37903B00AF710A /* ShopImage */ = {
@@ -183,7 +183,7 @@
 			children = (
 				418FD11B1F2584860079B103 /* ShopImage+Utils.swift */,
 			);
-			name = ShopImage;
+			path = ShopImage;
 			sourceTree = "<group>";
 		};
 		412BD7361F37906E00AF710A /* ShopMapPin */ = {
@@ -191,16 +191,16 @@
 			children = (
 				41D4A4E11F2E4D910082536B /* ShopMapPin.swift */,
 			);
-			name = ShopMapPin;
+			path = ShopMapPin;
 			sourceTree = "<group>";
 		};
 		416B10CB1F374A29009A46CD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				416B10CC1F374A49009A46CD /* Locale.swift */,
 				41C143C81F24205500D0C38B /* Language.swift */,
+				416B10CC1F374A49009A46CD /* Locale.swift */,
 			);
-			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		41C143D01F25017200D0C38B /* Frameworks */ = {
@@ -215,11 +215,11 @@
 		41C381581F23B71A00149609 = {
 			isa = PBXGroup;
 			children = (
+				41C143D01F25017200D0C38B /* Frameworks */,
 				41C381631F23B71A00149609 /* Offline Madrid Shopping */,
 				41C3817B1F23B71A00149609 /* Offline Madrid ShoppingTests */,
 				41C381861F23B71A00149609 /* Offline Madrid ShoppingUITests */,
 				41C381621F23B71A00149609 /* Products */,
-				41C143D01F25017200D0C38B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,8 +241,8 @@
 				41F60C991F23D6A100BF8307 /* Interactor */,
 				41F60C9A1F23D6AC00BF8307 /* Manager */,
 				41F60C971F23D64000BF8307 /* Model */,
-				41F60C961F23D62300BF8307 /* View */,
 				41F60C981F23D66D00BF8307 /* Resources */,
+				41F60C961F23D62300BF8307 /* View */,
 				41C381731F23B71A00149609 /* Info.plist */,
 			);
 			path = "Offline Madrid Shopping";
@@ -251,8 +251,8 @@
 		41C3817B1F23B71A00149609 /* Offline Madrid ShoppingTests */ = {
 			isa = PBXGroup;
 			children = (
-				41C3817C1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift */,
 				41C3817E1F23B71A00149609 /* Info.plist */,
+				41C3817C1F23B71A00149609 /* Offline_Madrid_ShoppingTests.swift */,
 			);
 			path = "Offline Madrid ShoppingTests";
 			sourceTree = "<group>";
@@ -260,8 +260,8 @@
 		41C381861F23B71A00149609 /* Offline Madrid ShoppingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */,
 				41C381891F23B71A00149609 /* Info.plist */,
+				41C381871F23B71A00149609 /* Offline_Madrid_ShoppingUITests.swift */,
 			);
 			path = "Offline Madrid ShoppingUITests";
 			sourceTree = "<group>";
@@ -271,19 +271,19 @@
 			children = (
 				41C381661F23B71A00149609 /* ShopLoaderViewController.swift */,
 			);
-			name = ShopLoader;
+			path = ShopLoader;
 			sourceTree = "<group>";
 		};
 		41D4A4E81F2E99F50082536B /* ShoppingMap */ = {
 			isa = PBXGroup;
 			children = (
-				41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */,
-				412BD7281F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift */,
 				412BD72A1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift */,
 				412BD72C1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift */,
 				412BD72E1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift */,
+				412BD7281F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift */,
+				41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */,
 			);
-			name = ShoppingMap;
+			path = ShoppingMap;
 			sourceTree = "<group>";
 		};
 		41D4A4E91F2E9A0A0082536B /* ShopDetail */ = {
@@ -291,38 +291,38 @@
 			children = (
 				41D4A4E31F2E769A0082536B /* ShopDetailViewController.swift */,
 			);
-			name = ShopDetail;
+			path = ShopDetail;
 			sourceTree = "<group>";
 		};
 		41D4A4EA1F2E9A2A0082536B /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */,
 				4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */,
-				417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */,
+				41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */,
 				414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */,
+				417FB2181F25302A00663FB2 /* SaveShopInteractor.swift */,
 			);
-			name = Shop;
+			path = Shop;
 			sourceTree = "<group>";
 		};
 		41D4A4EB1F2E9A390082536B /* ShopImage */ = {
 			isa = PBXGroup;
 			children = (
-				417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */,
 				414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */,
+				417FB21C1F2570D000663FB2 /* LoadShopImageInteractor.swift */,
 			);
-			name = ShopImage;
+			path = ShopImage;
 			sourceTree = "<group>";
 		};
 		41D4A4EC1F2E9A4D0082536B /* ShopAPI */ = {
 			isa = PBXGroup;
 			children = (
-				41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */,
-				41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */,
-				417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */,
 				41F60CA31F23E31500BF8307 /* ShopAPIError.swift */,
+				41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */,
+				417FB21A1F2532FF00663FB2 /* ShopAPIManagerCoreDataImpl.swift */,
+				41F60CA11F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift */,
 			);
-			name = ShopAPI;
+			path = ShopAPI;
 			sourceTree = "<group>";
 		};
 		41D4A4ED1F2E9A640082536B /* CoreData */ = {
@@ -330,7 +330,7 @@
 			children = (
 				41C143D51F25134300D0C38B /* CoreDataManager.swift */,
 			);
-			name = CoreData;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		41D4A4EF1F2E9AB00082536B /* ShopCell */ = {
@@ -339,43 +339,43 @@
 				4178E6311F2D1B9800E87F06 /* ShopCell.swift */,
 				4178E6321F2D1B9800E87F06 /* ShopCell.xib */,
 			);
-			name = ShopCell;
+			path = ShopCell;
 			sourceTree = "<group>";
 		};
 		41F60C951F23D60500BF8307 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				41D4A4E91F2E9A0A0082536B /* ShopDetail */,
-				41D4A4E81F2E99F50082536B /* ShoppingMap */,
 				41D4A4E71F2E99E70082536B /* ShopLoader */,
+				41D4A4E81F2E99F50082536B /* ShoppingMap */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		41F60C961F23D62300BF8307 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				412BD7361F37906E00AF710A /* ShopMapPin */,
 				41D4A4EF1F2E9AB00082536B /* ShopCell */,
-				41C381681F23B71A00149609 /* Main.storyboard */,
+				412BD7361F37906E00AF710A /* ShopMapPin */,
 				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
+				41C381681F23B71A00149609 /* Main.storyboard */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		41F60C971F23D64000BF8307 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
-				416B10CB1F374A29009A46CD /* Utils */,
 				412BD7301F378FA400AF710A /* Shop */,
 				412BD7311F378FE300AF710A /* ShopDescription */,
-				412BD7321F378FF700AF710A /* ShopKeywords */,
-				412BD7331F37900D00AF710A /* ShopOpenningHours */,
-				412BD7341F37902C00AF710A /* ShopLocation */,
 				412BD7351F37903B00AF710A /* ShopImage */,
+				412BD7321F378FF700AF710A /* ShopKeywords */,
+				412BD7341F37902C00AF710A /* ShopLocation */,
+				412BD7331F37900D00AF710A /* ShopOpenningHours */,
+				416B10CB1F374A29009A46CD /* Utils */,
+				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		41F60C981F23D66D00BF8307 /* Resources */ = {
@@ -383,16 +383,16 @@
 			children = (
 				41C3816E1F23B71A00149609 /* Assets.xcassets */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		41F60C991F23D6A100BF8307 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				41D4A4EB1F2E9A390082536B /* ShopImage */,
 				41D4A4EA1F2E9A2A0082536B /* Shop */,
+				41D4A4EB1F2E9A390082536B /* ShopImage */,
 			);
-			name = Interactor;
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		41F60C9A1F23D6AC00BF8307 /* Manager */ = {
@@ -401,7 +401,7 @@
 				41D4A4ED1F2E9A640082536B /* CoreData */,
 				41D4A4EC1F2E9A4D0082536B /* ShopAPI */,
 			);
-			name = Manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,6 +618,7 @@
 				41C381691F23B71A00149609 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		41C381701F23B71A00149609 /* LaunchScreen.storyboard */ = {
@@ -626,6 +627,7 @@
 				41C381711F23B71A00149609 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
