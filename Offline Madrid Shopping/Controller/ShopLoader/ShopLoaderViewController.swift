@@ -22,8 +22,11 @@ class ShopLoaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.coreDataManager = CoreDataManager()
-        self.aLittleAdviceLabel.isHidden = true
         self.title = TITLE
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.aLittleAdviceLabel.isHidden = true
     }
     
     @IBAction func loadShopsTapped(_ sender: Any) {
