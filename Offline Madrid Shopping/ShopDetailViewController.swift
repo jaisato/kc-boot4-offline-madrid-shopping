@@ -9,24 +9,22 @@
 import UIKit
 import CoreData
 
-class ShopDetailViewController: UIViewController {
+class ShopDetailViewController: UITableViewController {
 
     var shop: Shop!
-
-    @IBOutlet weak var shopMapImage: UIImageView!
+    
+    @IBOutlet weak var shopImageView: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var shopNameLabel: UILabel!
     @IBOutlet weak var shopAddressLabel: UILabel!
     @IBOutlet weak var shopHoursLabel: UILabel!
     @IBOutlet weak var shopDescriptionLabel: UILabel!
-    @IBOutlet weak var shopImageView: UIImageView!
+    @IBOutlet weak var shopMapImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        title = shop.name
-        
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.title = self.shop.name
         
         loadShopData()
     }
@@ -39,5 +37,15 @@ class ShopDetailViewController: UIViewController {
         shopHoursLabel.text = shop.hours(in: Language.spanish)?.text
         shopDescriptionLabel.text = shop.description(in: Language.spanish)?.text
         shopImageView.image = shop.shopImage()
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
 }

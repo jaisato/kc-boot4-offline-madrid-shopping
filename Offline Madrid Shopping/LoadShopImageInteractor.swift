@@ -27,12 +27,9 @@ public class LoadShopImageInteractor {
         _manager.getShopImage(urlString: self._shopImage!.url!, completion: { (image: UIImage) in
             assert(Thread.current === Thread.main)
             
-            if let imageData = UIImageJPEGRepresentation(image, 1) as NSData? {
-                self._shopImage!.data = imageData
-            }
-
+            self._shopImage!.data = UIImageJPEGRepresentation(image, 1) as NSData?
             completion(self._shopImage!)
-
+            
         }) { (error: Error) in
             onError(error)
         }

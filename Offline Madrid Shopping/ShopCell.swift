@@ -18,11 +18,13 @@ class ShopCell: UITableViewCell {
         if let name = shop.name {
             self.nameLabel.text = name
         }
+        
         if let address = shop.address {
             self.addressLabel.text = address
         }
-        if let image = shop.image?.data {
-            self.shopLogoImage?.image = UIImage(data: image as Data)
+        
+        if let logo = shop.logo, let logoData = logo.data {
+            self.shopLogoImage?.image = UIImage(data: logoData as Data)
         }
     }
 }

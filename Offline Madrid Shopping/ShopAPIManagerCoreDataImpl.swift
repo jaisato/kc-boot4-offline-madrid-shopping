@@ -39,22 +39,22 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
     }
     
     public func saveAllShop(shopJsonArray: ShopJsonArray, completion: @escaping ([Shop]) -> Void, onError: @escaping ErrorClosure) {
-            let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
-            let shops: [Shop] = shopJsonArray.map({ (shopJson: ShopJson) -> Shop in
-                return self.createShop(from: shopJson, container: container)
-            })
-            
-            self._manager.saveContext(context: container.viewContext)
-            
-            completion(shops)
+        let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
+        let shops: [Shop] = shopJsonArray.map({ (shopJson: ShopJson) -> Shop in
+            return self.createShop(from: shopJson, container: container)
+        })
+        
+        self._manager.saveContext(context: container.viewContext)
+        
+        completion(shops)
     }
     
     public func saveShop(shopJson: ShopJson, completion: @escaping (Shop) -> Void, onError: @escaping ErrorClosure) {
-            let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
-            let shop = self.createShop(from: shopJson, container: container)
-            self._manager.saveContext(context: container.viewContext)
-            
-            completion(shop)
+        let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
+        let shop = self.createShop(from: shopJson, container: container)
+        self._manager.saveContext(context: container.viewContext)
+        
+        completion(shop)
     }
     
     private func createShop(from shopJson: ShopJson, container: NSPersistentContainer) -> Shop {

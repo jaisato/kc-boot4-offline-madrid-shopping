@@ -14,12 +14,15 @@ import CoreData
 class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
 
     private let TITLE = "Madrid Shopping Map"
-    
+
     private let CELL_ID = "ShopCell"
-    
     private let ANNOTATION_ID = "AnnotationId"
+
+    private let GO_TO_SHOP_DETAIL = "GoToShopDetail"
     
     var shops: [Shop]?
+    
+    var shopDetail: Shop!
     
     var coreDataManager: CoreDataManager!
     
@@ -201,11 +204,21 @@ class ShoppingMapViewController: UIViewController, UITableViewDataSource, UITabl
 
     func goToShopDetail(shop: Shop) {
         print("Go to shop detail")
+        self.shopDetail = shop
+        performSegue(withIdentifier: self.GO_TO_SHOP_DETAIL, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueId = segue.identifier else { return }
         
-        let shopDetailVC = ShopDetailViewController()
-        shopDetailVC.shop = shop
-        
-        self.navigationController?.pushViewController(shopDetailVC, animated: true)
+        switch segueId {
+            case self.GO_TO_SHOP_DETAIL:
+                let shopDetailVC = ShopDetailViewController()
+                shopDetailVC.shop = self.shopDetail
+                break
+            default:
+                break
+        }
     }
 }
 

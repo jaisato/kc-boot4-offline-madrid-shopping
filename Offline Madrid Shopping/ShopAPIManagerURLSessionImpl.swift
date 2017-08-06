@@ -50,34 +50,66 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
     }
     
     public func getShopImage(urlString: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        guard let url = URL(string: urlString) else {
-            let apiError = ShopAPIError.invalidURL("Invalid url \( urlString )")
-            return onError(apiError)
-        }
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                return onError(error)
-            }
-            
-            guard let imgData = data else {
-                let apiError = ShopAPIError.downloadError("NO image data")
-                return onError(apiError)
-            }
-            
-            DispatchQueue.main.async {
-                if let image = UIImage(data: imgData) {
-                    completion(image)
-                }
-                else {
-                    let apiError = ShopAPIError.downloadError("Image creation error")
+        // DispatchQueue.global().async {
+        // DispatchQueue.global().sync {
+            guard let url = URL(string: urlString) else {
+                let apiError = ShopAPIError.invalidURL("Invalid image url \( urlString )")
+                // DispatchQueue.main.sync {
                     onError(apiError)
-                }
+                // }
+                return
             }
-        }
+            
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    // DispatchQueue.main.sync {
+                        completion(image)
+                    // }
+                } else {
+                    let apiError = ShopAPIError.downloadError("Error creating image")
+                    // DispatchQueue.main.sync {
+                        onError(apiError)
+                    // }
+                }
+            } catch {
+                let apiError = ShopAPIError.downloadError("Error downloading shop image \(error)")
+                // DispatchQueue.main.sync {
+                    onError(apiError)
+                // }
+            }
+        // }
         
-        task.resume()
+//        guard let url = URL(string: urlString) else {
+//            let apiError = ShopAPIError.invalidURL("Invalid url \( urlString )")
+//            onError(apiError)
+//            return
+//        }
+//        
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+//            if let error = error {
+//                DispatchQueue.main.async { onError(error) }
+//                return
+//            }
+//            
+//            guard let imgData = data else {
+//                let apiError = ShopAPIError.downloadError("NO image data")
+//                DispatchQueue.main.async { onError(apiError) }
+//                return
+//            }
+//            
+//            DispatchQueue.main.async {
+//                if let image = UIImage(data: imgData) {
+//                    completion(image)
+//                } else {
+//                    let apiError = ShopAPIError.downloadError("Image creation error")
+//                    onError(apiError)
+//                }
+//            }
+//        }
+//        
+//        task.resume()
     }
     
     public func getAllShopImages(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {

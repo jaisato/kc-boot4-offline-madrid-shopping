@@ -35,7 +35,6 @@
 		41C381961F23C4FE00149609 /* ShoppingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */; };
 		41D4A4E21F2E4D910082536B /* ShopMapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4A4E11F2E4D910082536B /* ShopMapPin.swift */; };
 		41D4A4E51F2E769A0082536B /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4A4E31F2E769A0082536B /* ShopDetailViewController.swift */; };
-		41D4A4E61F2E769A0082536B /* ShopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D4A4E41F2E769A0082536B /* ShopDetailViewController.xib */; };
 		41F60C9C1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */; };
 		41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */; };
 		41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */; };
@@ -95,7 +94,6 @@
 		41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingMapViewController.swift; sourceTree = "<group>"; };
 		41D4A4E11F2E4D910082536B /* ShopMapPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopMapPin.swift; sourceTree = "<group>"; };
 		41D4A4E31F2E769A0082536B /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
-		41D4A4E41F2E769A0082536B /* ShopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailViewController.xib; sourceTree = "<group>"; };
 		41F60C9B1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopJsonArrayInteractor.swift; sourceTree = "<group>"; };
 		41F60C9D1F23D81900BF8307 /* ShopAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAPIManager.swift; sourceTree = "<group>"; };
 		41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shop+Utils.swift"; sourceTree = "<group>"; };
@@ -265,14 +263,6 @@
 			name = ShopCell;
 			sourceTree = "<group>";
 		};
-		41D4A4F01F2E9ACA0082536B /* ShopDetail */ = {
-			isa = PBXGroup;
-			children = (
-				41D4A4E41F2E769A0082536B /* ShopDetailViewController.xib */,
-			);
-			name = ShopDetail;
-			sourceTree = "<group>";
-		};
 		41F60C951F23D60500BF8307 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +276,6 @@
 		41F60C961F23D62300BF8307 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				41D4A4F01F2E9ACA0082536B /* ShopDetail */,
 				41D4A4EF1F2E9AB00082536B /* ShopCell */,
 				41C381681F23B71A00149609 /* Main.storyboard */,
 				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
@@ -455,7 +444,6 @@
 				41C3816F1F23B71A00149609 /* Assets.xcassets in Resources */,
 				41C3816A1F23B71A00149609 /* Main.storyboard in Resources */,
 				4178E6341F2D1B9800E87F06 /* ShopCell.xib in Resources */,
-				41D4A4E61F2E769A0082536B /* ShopDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

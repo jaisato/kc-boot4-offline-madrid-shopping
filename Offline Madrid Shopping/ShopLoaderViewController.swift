@@ -53,16 +53,17 @@ class ShopLoaderViewController: UIViewController {
         activityIndicator.startAnimating()
         
         let loadShopJsonArrayInteractor = LoadShopJsonArrayInteractor()
-        loadShopJsonArrayInteractor.execute(
-            completion: saveShops(shopJsonArray:))
-        { (error: Error) in
+        loadShopJsonArrayInteractor.execute(completion: { (shopJsonArray: ShopJsonArray) in
+            print("Completion: shops downloaded \( shopJsonArray.count )")
+            self.saveShops(shopJsonArray: shopJsonArray)
+        }) { (error: Error) in
             self.activityIndicator.stopAnimating()
             self.createAlert(title: "Error loading shops", message: error.localizedDescription)
         }
     }
 
     private func saveShops(shopJsonArray: ShopJsonArray) {
-        print("Completion: shops downloaded \( shopJsonArray.count )")
+        print("saveShops ...")
         guard shopJsonArray.count > 0 else {
             self.activityIndicator.stopAnimating()
             self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
@@ -90,10 +91,13 @@ class ShopLoaderViewController: UIViewController {
             coreDataManager: CoreDataManager()
         )
         
-        loadAllShopImagesInteractor.execute(from: shops, completion: {
-            self.shops = shops
+        loadAllShopImagesInteractor.execute(from: shops, completion: { (shopsWithImages: [Shop]) in
+            self.shops = shopsWithImages
+            let container = self.coreDataManager.persistentContainer(dbName: self.coreDataManager.DB_NAME)
+            self.coreDataManager.saveContext(context: container.viewContext)
             
             self.activityIndicator.stopAnimating()
+            
             self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
         }) { (error: Error) in
             self.activityIndicator.stopAnimating()
