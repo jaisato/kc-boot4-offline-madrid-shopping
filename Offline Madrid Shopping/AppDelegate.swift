@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data config funcs
 
     func saveContext () {
         guard let coreDataManager = self.coreDataManager else { return }

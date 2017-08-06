@@ -20,4 +20,14 @@ public enum Language: Int {
             return "es"
         }
     }
+    
+    public static func getLanguage(from name: String) -> Language {
+        switch name {
+        case Language.spanish.name():
+            return Language.spanish
+        default:
+            return Language.english
+        }
+    }
+    
 }

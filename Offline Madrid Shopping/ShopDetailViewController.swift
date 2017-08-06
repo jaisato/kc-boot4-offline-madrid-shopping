@@ -11,6 +11,7 @@ import CoreData
 
 class ShopDetailViewController: UITableViewController {
 
+    var language: Language!
     var shop: Shop!
     
     @IBOutlet weak var shopImageView: UIImageView!
@@ -26,17 +27,10 @@ class ShopDetailViewController: UITableViewController {
     
         self.title = self.shop.name
         
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 140
+        
         loadShopData()
-    }
-
-    private func loadShopData() {
-        shopMapImage.image = shop.location?.locationImage()
-        logoImage.image = shop.logoImage()
-        shopNameLabel.text = shop.name
-        shopAddressLabel.text = shop.address
-        shopHoursLabel.text = shop.hours(in: Language.spanish)?.text
-        shopDescriptionLabel.text = shop.description(in: Language.spanish)?.text
-        shopImageView.image = shop.shopImage()
     }
     
     // MARK: - Table view data source
@@ -47,5 +41,17 @@ class ShopDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    
+    // MARK: - View Data
+    
+    private func loadShopData() {
+        shopMapImage.image = shop.location?.locationImage()
+        logoImage.image = shop.logoImage()
+        shopNameLabel.text = shop.name
+        shopAddressLabel.text = shop.address
+        shopHoursLabel.text = shop.hours(in: self.language)?.text
+        shopDescriptionLabel.text = shop.description(in: self.language)?.text
+        shopImageView.image = shop.shopImage()
     }
 }

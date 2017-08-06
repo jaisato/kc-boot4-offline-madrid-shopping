@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		412BD7291F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412BD7281F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift */; };
+		412BD72B1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412BD72A1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift */; };
+		412BD72D1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412BD72C1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift */; };
+		412BD72F1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412BD72E1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift */; };
 		414EF5B91F281D2000D5C281 /* SaveAllShopsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */; };
 		414EF5BB1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */; };
+		416B10CD1F374A49009A46CD /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416B10CC1F374A49009A46CD /* Locale.swift */; };
 		4178E6301F29295100E87F06 /* LoadShopArrayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */; };
 		4178E6331F2D1B9800E87F06 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178E6311F2D1B9800E87F06 /* ShopCell.swift */; };
 		4178E6341F2D1B9800E87F06 /* ShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178E6321F2D1B9800E87F06 /* ShopCell.xib */; };
@@ -60,8 +65,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		412BD7281F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShoppingMapViewController+UITableViewController.swift"; sourceTree = "<group>"; };
+		412BD72A1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShoppingMapViewController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
+		412BD72C1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShoppingMapViewController+MKMapViewDelegate.swift"; sourceTree = "<group>"; };
+		412BD72E1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		414EF5B81F281D2000D5C281 /* SaveAllShopsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAllShopsInteractor.swift; sourceTree = "<group>"; };
 		414EF5BA1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAllShopImagesInteractor.swift; sourceTree = "<group>"; };
+		416B10CC1F374A49009A46CD /* Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		4178E62F1F29295100E87F06 /* LoadShopArrayInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadShopArrayInteractor.swift; sourceTree = "<group>"; };
 		4178E6311F2D1B9800E87F06 /* ShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		4178E6321F2D1B9800E87F06 /* ShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCell.xib; sourceTree = "<group>"; };
@@ -128,6 +138,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		412BD7301F378FA400AF710A /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
+			);
+			name = Shop;
+			sourceTree = "<group>";
+		};
+		412BD7311F378FE300AF710A /* ShopDescription */ = {
+			isa = PBXGroup;
+			children = (
+				41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */,
+			);
+			name = ShopDescription;
+			sourceTree = "<group>";
+		};
+		412BD7321F378FF700AF710A /* ShopKeywords */ = {
+			isa = PBXGroup;
+			children = (
+				41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */,
+			);
+			name = ShopKeywords;
+			sourceTree = "<group>";
+		};
+		412BD7331F37900D00AF710A /* ShopOpenningHours */ = {
+			isa = PBXGroup;
+			children = (
+				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
+			);
+			name = ShopOpenningHours;
+			sourceTree = "<group>";
+		};
+		412BD7341F37902C00AF710A /* ShopLocation */ = {
+			isa = PBXGroup;
+			children = (
+				418FD1191F2575930079B103 /* ShopLocation+Utils.swift */,
+			);
+			name = ShopLocation;
+			sourceTree = "<group>";
+		};
+		412BD7351F37903B00AF710A /* ShopImage */ = {
+			isa = PBXGroup;
+			children = (
+				418FD11B1F2584860079B103 /* ShopImage+Utils.swift */,
+			);
+			name = ShopImage;
+			sourceTree = "<group>";
+		};
+		412BD7361F37906E00AF710A /* ShopMapPin */ = {
+			isa = PBXGroup;
+			children = (
+				41D4A4E11F2E4D910082536B /* ShopMapPin.swift */,
+			);
+			name = ShopMapPin;
+			sourceTree = "<group>";
+		};
+		416B10CB1F374A29009A46CD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				416B10CC1F374A49009A46CD /* Locale.swift */,
+				41C143C81F24205500D0C38B /* Language.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		41C143D01F25017200D0C38B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +278,10 @@
 			isa = PBXGroup;
 			children = (
 				41C381951F23C4FE00149609 /* ShoppingMapViewController.swift */,
+				412BD7281F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift */,
+				412BD72A1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift */,
+				412BD72C1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift */,
+				412BD72E1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift */,
 			);
 			name = ShoppingMap;
 			sourceTree = "<group>";
@@ -276,6 +355,7 @@
 		41F60C961F23D62300BF8307 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				412BD7361F37906E00AF710A /* ShopMapPin */,
 				41D4A4EF1F2E9AB00082536B /* ShopCell */,
 				41C381681F23B71A00149609 /* Main.storyboard */,
 				41C381701F23B71A00149609 /* LaunchScreen.storyboard */,
@@ -287,14 +367,13 @@
 			isa = PBXGroup;
 			children = (
 				41C3816B1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld */,
-				41C143C81F24205500D0C38B /* Language.swift */,
-				41F60C9F1F23DBB200BF8307 /* Shop+Utils.swift */,
-				41C143CA1F2420B500D0C38B /* ShopDescription+Utils.swift */,
-				41C143CE1F2426F200D0C38B /* ShopKeywords+Utils.swift */,
-				41C143CC1F24269C00D0C38B /* ShopOpeningHour+Utils.swift */,
-				418FD1191F2575930079B103 /* ShopLocation+Utils.swift */,
-				418FD11B1F2584860079B103 /* ShopImage+Utils.swift */,
-				41D4A4E11F2E4D910082536B /* ShopMapPin.swift */,
+				416B10CB1F374A29009A46CD /* Utils */,
+				412BD7301F378FA400AF710A /* Shop */,
+				412BD7311F378FE300AF710A /* ShopDescription */,
+				412BD7321F378FF700AF710A /* ShopKeywords */,
+				412BD7331F37900D00AF710A /* ShopOpenningHours */,
+				412BD7341F37902C00AF710A /* ShopLocation */,
+				412BD7351F37903B00AF710A /* ShopImage */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -472,15 +551,20 @@
 				41C143CB1F2420B500D0C38B /* ShopDescription+Utils.swift in Sources */,
 				41D4A4E21F2E4D910082536B /* ShopMapPin.swift in Sources */,
 				41C143C91F24205500D0C38B /* Language.swift in Sources */,
+				412BD72F1F378EAA00AF710A /* ShoppingMapViewController+NSFetchedResultsControllerDelegate.swift in Sources */,
 				41F60CA21F23E1BD00BF8307 /* ShopAPIManagerURLSessionImpl.swift in Sources */,
 				41C381651F23B71A00149609 /* AppDelegate.swift in Sources */,
 				41C3816D1F23B71A00149609 /* Offline_Madrid_Shopping.xcdatamodeld in Sources */,
+				416B10CD1F374A49009A46CD /* Locale.swift in Sources */,
 				418FD11A1F2575930079B103 /* ShopLocation+Utils.swift in Sources */,
 				41F60C9C1F23D72400BF8307 /* LoadShopJsonArrayInteractor.swift in Sources */,
+				412BD72D1F378D9100AF710A /* ShoppingMapViewController+MKMapViewDelegate.swift in Sources */,
+				412BD72B1F378CB800AF710A /* ShoppingMapViewController+CLLocationManagerDelegate.swift in Sources */,
 				41F60CA01F23DBB200BF8307 /* Shop+Utils.swift in Sources */,
 				4178E6331F2D1B9800E87F06 /* ShopCell.swift in Sources */,
 				41F60C9E1F23D81900BF8307 /* ShopAPIManager.swift in Sources */,
 				41F60CA41F23E31500BF8307 /* ShopAPIError.swift in Sources */,
+				412BD7291F378BCB00AF710A /* ShoppingMapViewController+UITableViewController.swift in Sources */,
 				41D4A4E51F2E769A0082536B /* ShopDetailViewController.swift in Sources */,
 				418FD11C1F2584860079B103 /* ShopImage+Utils.swift in Sources */,
 				414EF5BB1F282C9F00D5C281 /* LoadAllShopImagesInteractor.swift in Sources */,

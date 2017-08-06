@@ -28,6 +28,8 @@ class ShopLoaderViewController: UIViewController {
         loadShops()
     }
     
+    // MARK: - Shop loading funcs
+    
     private func loadShops() {
         print("Loading shops ...")
         activityIndicator.startAnimating()
@@ -62,6 +64,8 @@ class ShopLoaderViewController: UIViewController {
         }
     }
 
+    // MARK: - Shop storage funcs
+    
     private func saveShops(shopJsonArray: ShopJsonArray) {
         print("saveShops ...")
         guard shopJsonArray.count > 0 else {
@@ -105,6 +109,8 @@ class ShopLoaderViewController: UIViewController {
         }
     }
     
+    // MARK: - Segues
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueId = segue.identifier else { return }
         
@@ -112,6 +118,7 @@ class ShopLoaderViewController: UIViewController {
         case self.SHOPPING_MAP_SEGUE:
             let shoppingMapVC = segue.destination as! ShoppingMapViewController
             shoppingMapVC.shops = self.shops
+            shoppingMapVC.language = Locale.getDeviceLanguage()
             shoppingMapVC.coreDataManager = self.coreDataManager
             break
         default:
@@ -119,6 +126,8 @@ class ShopLoaderViewController: UIViewController {
             return
         }
     }
+    
+    // MARK: - Info/Error Alerts
     
     private func createAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
