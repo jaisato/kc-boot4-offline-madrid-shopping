@@ -16,15 +16,18 @@ class ShopLoaderViewController: UIViewController {
     private var shops: [Shop] = []
     private var coreDataManager: CoreDataManager!
     
+    @IBOutlet weak var aLittleAdviceLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.coreDataManager = CoreDataManager()
+        self.aLittleAdviceLabel.isHidden = true
         self.title = TITLE
     }
     
     @IBAction func loadShopsTapped(_ sender: Any) {
+        self.aLittleAdviceLabel.isHidden = false
         loadShops()
     }
     

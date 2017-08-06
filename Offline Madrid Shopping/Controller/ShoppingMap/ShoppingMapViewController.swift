@@ -51,8 +51,6 @@ class ShoppingMapViewController: UIViewController {
         
         self.configureLocationManager()
         self.initializeMapView()
-        
-        print("ShoppingMapViewController viewDidLoad: shops = \( shops?.count ?? 0)")
     }
     
     // MARK: - UIViewController config funcs
@@ -69,7 +67,6 @@ class ShoppingMapViewController: UIViewController {
     // MARK: - Segues
 
     func goToShopDetail(shop: Shop) {
-        print("Go to shop detail")
         self.shopDetail = shop
         performSegue(withIdentifier: self.GO_TO_SHOP_DETAIL, sender: self)
     }

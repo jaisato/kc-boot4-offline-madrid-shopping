@@ -52,6 +52,7 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
     public func getShopImage(urlString: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
         // DispatchQueue.global().async {
         // DispatchQueue.global().sync {
+        print("Downloading image: \(urlString)")
             guard let url = URL(string: urlString) else {
                 let apiError = ShopAPIError.invalidURL("Invalid image url \( urlString )")
                 // DispatchQueue.main.sync {

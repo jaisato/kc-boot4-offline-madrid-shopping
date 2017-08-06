@@ -40,8 +40,6 @@ extension ShoppingMapViewController: MKMapViewDelegate {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let annotation = ShopMapPin(coordinate: coordinate, shop: shop)
                 self.mapView.addAnnotation(annotation)
-                
-                print("Annotation added: lat \(coordinate.latitude), lon \(coordinate.longitude)")
             }
         }
     }

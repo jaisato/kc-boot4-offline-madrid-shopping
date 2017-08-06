@@ -30,8 +30,6 @@ public class LoadAllShopImagesInteractor {
         assert(Thread.current === Thread.main)
         
         print("Shops count: \(shopArray.count)")
-        print("numberOfImages: \(self.numberOfImages)")
-        print("numberOfLogos: \(self.numberOfLogos)")
         
         self._shops = shopArray
         for (index, _) in self._shops.enumerated() {
@@ -52,7 +50,7 @@ public class LoadAllShopImagesInteractor {
             self._coreDataManager.saveContext(context: self._container.viewContext)
             
             self.numberOfImages = self.numberOfImages + 1
-            print("numberOfImages: \(self.numberOfImages)")
+            print("numberOfImages: \(self.numberOfImages) of \(shopsNumber)")
             
             self.doCompletion(completion, shopsCount: shopsNumber)
         }, onError: { (error: Error) in
@@ -74,7 +72,7 @@ public class LoadAllShopImagesInteractor {
             self._coreDataManager.saveContext(context: self._container.viewContext)
             
             self.numberOfLogos = self.numberOfLogos + 1
-            print("numberOfLogos: \(self.numberOfLogos)")
+            print("numberOfLogos: \(self.numberOfLogos) of \(shopsNumber)")
             
             self.doCompletion(completion, shopsCount: shopsNumber)
         }, onError: { (error: Error) in
@@ -98,7 +96,7 @@ public class LoadAllShopImagesInteractor {
             self._coreDataManager.saveContext(context: self._container.viewContext)
             
             self.numberOfMapImages = self.numberOfMapImages + 1
-            print("numberOfMapImages: \(self.numberOfMapImages)")
+            print("numberOfMapImages: \(self.numberOfMapImages) of \(shopsNumber)")
             
             self.doCompletion(completion, shopsCount: shopsNumber)
         }, onError: { (error: Error) in

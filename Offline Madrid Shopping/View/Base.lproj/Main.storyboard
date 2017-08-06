@@ -30,8 +30,8 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlG-Mv-JPb">
-                                <rect key="frame" x="144.5" y="424" width="86" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="131.5" y="424" width="112" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Load Shops">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,8 +40,14 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="52l-7X-rk3">
-                                <rect key="frame" x="169" y="472" width="37" height="37"/>
+                                <rect key="frame" x="169" y="478" width="37" height="37"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This may take a while..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OME-FE-hwB">
+                                <rect key="frame" x="99" y="531" width="177" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,13 +57,16 @@
                             <constraint firstItem="52l-7X-rk3" firstAttribute="top" secondItem="hlG-Mv-JPb" secondAttribute="bottom" constant="16" id="E0E-qZ-qdp"/>
                             <constraint firstItem="hlG-Mv-JPb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JCh-fo-oE6"/>
                             <constraint firstItem="2kP-h6-fwW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Nsc-3M-QxU"/>
+                            <constraint firstItem="OME-FE-hwB" firstAttribute="centerX" secondItem="52l-7X-rk3" secondAttribute="centerX" id="Qcq-EV-hok"/>
                             <constraint firstItem="2kP-h6-fwW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RtL-c1-sHB"/>
+                            <constraint firstItem="OME-FE-hwB" firstAttribute="top" secondItem="52l-7X-rk3" secondAttribute="bottom" constant="16" id="SIV-OZ-2tn"/>
                             <constraint firstItem="52l-7X-rk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jf0-tu-pSu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2kP-h6-fwW" secondAttribute="trailing" constant="8" id="og1-YB-Hm4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iWv-nD-4RP"/>
                     <connections>
+                        <outlet property="aLittleAdviceLabel" destination="OME-FE-hwB" id="sRG-ua-Cb3"/>
                         <outlet property="activityIndicator" destination="52l-7X-rk3" id="V2j-AH-scP"/>
                         <segue destination="npU-kv-JiM" kind="show" identifier="goToShoppingMapSegue" id="X3a-4U-d6G"/>
                     </connections>
