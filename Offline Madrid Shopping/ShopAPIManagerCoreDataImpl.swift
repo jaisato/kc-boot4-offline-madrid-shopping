@@ -62,7 +62,9 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
         
         // Shop location (Coordinates)
         let location = ShopLocation(from: shopJson, context: container.viewContext)
+        location.image = ShopImage.createShopLocationImage(location: location, context: container.viewContext)
         shop.location = location
+        
         
         // Shop images
         if let imageUrl = shopJson["img"] as? String,

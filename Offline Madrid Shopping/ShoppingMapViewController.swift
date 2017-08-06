@@ -43,23 +43,28 @@ class ShoppingMapViewController: UIViewController {
         
         self.title = TITLE
 
-        mapViewHeight.constant = view.bounds.height / 2
+        self.setTableViewDelegates()
+        self.setContext(manager: self.coreDataManager)
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        self.setMapViewHeight()
+        self.registerCellView()
         
-        self.context = self.getContext(manager: self.coreDataManager)
-        
-        self.tableView.register(ShopCell.self, forCellReuseIdentifier: CELL_ID)
-        
-        self.tableView.register(UINib(nibName: "ShopCell", bundle: nil), forCellReuseIdentifier: CELL_ID)
-        
-        configureLocationManager()
-        initializeMapView()
+        self.configureLocationManager()
+        self.initializeMapView()
         
         print("ShoppingMapViewController viewDidLoad: shops = \( shops?.count ?? 0)")
     }
     
+    // MARK: - UIViewController config funcs
+    
+    func registerCellView() {
+        self.tableView.register(ShopCell.self, forCellReuseIdentifier: CELL_ID)
+        self.tableView.register(UINib(nibName: "ShopCell", bundle: nil), forCellReuseIdentifier: CELL_ID)
+    }
+    
+    func setMapViewHeight() {
+        self.mapViewHeight.constant = (view.bounds.height - self.navigationController!.navigationBar.frame.size.height) / 2
+    }
     
     // MARK: - Segues
 

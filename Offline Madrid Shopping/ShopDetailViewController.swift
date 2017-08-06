@@ -11,6 +11,9 @@ import CoreData
 
 class ShopDetailViewController: UITableViewController {
 
+    private let NUMBER_OF_SECTIONS = 1
+    private let NUMBER_OF_ROWS_IN_SECTION = 5
+
     var language: Language!
     var shop: Shop!
     
@@ -36,11 +39,19 @@ class ShopDetailViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return NUMBER_OF_SECTIONS
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return NUMBER_OF_ROWS_IN_SECTION
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     // MARK: - View Data

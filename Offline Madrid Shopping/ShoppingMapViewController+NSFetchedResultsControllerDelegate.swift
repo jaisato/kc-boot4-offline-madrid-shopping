@@ -22,7 +22,7 @@ extension ShoppingMapViewController: NSFetchedResultsControllerDelegate {
             fetchRequest: Shop.fetchRequestOrderedByName(),
             managedObjectContext: self.context,
             sectionNameKeyPath: nil,
-            cacheName: nil // no cache (test)
+            cacheName: self.coreDataManager.DB_NAME // nil -> No cache (for testing)
         )
         
         _fetchedResultsController?.delegate = self
@@ -37,8 +37,8 @@ extension ShoppingMapViewController: NSFetchedResultsControllerDelegate {
         return _fetchedResultsController!
     }
     
-    func getContext(manager: CoreDataManager) -> NSManagedObjectContext {
+    func setContext(manager: CoreDataManager) {
         let container = manager.persistentContainer(dbName: manager.DB_NAME)
-        return container.viewContext
+        self.context = container.viewContext
     }
 }

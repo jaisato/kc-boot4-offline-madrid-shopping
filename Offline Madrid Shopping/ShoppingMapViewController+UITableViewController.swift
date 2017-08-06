@@ -11,6 +11,11 @@ import Foundation
 
 extension ShoppingMapViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func setTableViewDelegates() {
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+    }
+    
     // MARK: TableView Data Source
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,5 +39,13 @@ extension ShoppingMapViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let shop = self.fetchedResultsController.object(at: indexPath)
         goToShopDetail(shop: shop)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 }

@@ -34,10 +34,10 @@ extension ShopLocation {
             image = UIImage(data: imageData)
         }
         
-        guard ((image) != nil) else {
-            return UIImage(named: "staticmap-no-location")
+        if let mapImage = image {
+            return mapImage
         }
         
-        return image
+        return UIImage(named: "staticmap-no-location")
     }
 }
