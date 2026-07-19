@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
-    private let GET_SHOPS_URL = "http://madrid-shops.com/json_new/getShops.php"
+    private let GET_SHOPS_URL = "https://madrid-shops.com/json_new/getShops.php"
     
     public func getShops(completion: @escaping GetShopJsonArrayCompletionClosure, onError: @escaping ErrorClosure) {
         guard let url = URL(string: self.GET_SHOPS_URL) else {
