@@ -41,10 +41,24 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- NSAllowsArbitraryLoads was true, which turns App Transport Security
+	     off for every host the app talks to, not just the one that needs it:
+	     each connection could then be read and rewritten by anything on the
+	     network path. Only madrid-shops.com is exempted now - it is the
+	     class API and is http-only - and everything else, the Static Maps
+	     requests included, goes back to requiring TLS. -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>madrid-shops.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>$(PRODUCT_NAME) needs your location to show the nearest shops.</string>
