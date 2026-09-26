@@ -36,9 +36,9 @@ extension Shop {
     public convenience init(from shopJson: ShopJson, context: NSManagedObjectContext) {
         self.init(context: context)
         
-        self.id = Int32(shopJson["id"] as! String)!
-        self.name = (shopJson["name"] as! String)
-        self.address = (shopJson["address"] as! String)
+        self.id = Int32(shopJson["id"] as? String ?? "") ?? 0
+        self.name = (shopJson["name"] as? String) ?? ""
+        self.address = (shopJson["address"] as? String) ?? ""
         
         self.phone = shopJson["telephone"] as? String
         self.email = shopJson["email"] as? String

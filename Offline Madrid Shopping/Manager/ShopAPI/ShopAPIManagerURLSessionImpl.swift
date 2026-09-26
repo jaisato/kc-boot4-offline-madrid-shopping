@@ -30,9 +30,13 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
             }
             
             do {
-                let shopJsonDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! ShopJsonDict
-                let shopJsonArray: ShopJsonArray = shopJsonDict["result"]!
-                
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                guard let shopJsonDict = jsonObject as? ShopJsonDict,
+                    let shopJsonArray = shopJsonDict["result"] else {
+                    let apiError = ShopAPIError.jsonError("Unexpected shops response format")
+                    return onError(apiError)
+                }
+
                 DispatchQueue.main.async {
                     completion(shopJsonArray)
                 }

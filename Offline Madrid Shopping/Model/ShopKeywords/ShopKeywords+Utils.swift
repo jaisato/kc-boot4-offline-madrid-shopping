@@ -16,10 +16,10 @@ extension ShopKeywords {
         self.language = language.name()
         
         if language == Language.spanish {
-            self.text = (shopJson["keywords_es"] as! String)
+            self.text = (shopJson["keywords_es"] as? String) ?? ""
             return
         }
         
-        self.text = (shopJson["keywords_en"] as! String)
+        self.text = (shopJson["keywords_en"] as? String) ?? ""
     }
 }
