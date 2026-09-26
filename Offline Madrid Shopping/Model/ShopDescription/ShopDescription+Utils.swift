@@ -16,10 +16,10 @@ extension ShopDescription {
         self.language = language.name()
         
         if language == Language.spanish {
-            self.text = (shopJson["description_es"] as! String)
+            self.text = (shopJson["description_es"] as? String) ?? ""
             return
         }
         
-        self.text = (shopJson["description_en"] as! String)
+        self.text = (shopJson["description_en"] as? String) ?? ""
     }
 }

@@ -16,16 +16,15 @@ extension ShopLocation {
         
         let allowedChars = "-01234567890."
         
-        var latString = shopJson["gps_lat"] as! String
+        var latString = (shopJson["gps_lat"] as? String) ?? ""
         latString = String(latString.characters.filter { allowedChars.characters.contains($0) })
-        var lonString = shopJson["gps_lon"] as! String
+        var lonString = (shopJson["gps_lon"] as? String) ?? ""
         lonString = String(lonString.characters.filter { allowedChars.characters.contains($0) })
         
-        let latitude = Double(latString)
-        let longitude = Double(lonString)
-        
-        self.latitude = latitude!
-        self.longitude = longitude!
+        // A missing or malformed coordinate keeps the Core Data default (0)
+        // instead of crashing the whole import.
+        self.latitude = Double(latString) ?? 0
+        self.longitude = Double(lonString) ?? 0
     }
     
     func locationImage() -> UIImage? {

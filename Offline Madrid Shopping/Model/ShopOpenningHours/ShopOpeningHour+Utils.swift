@@ -16,10 +16,10 @@ extension ShopOpeningHour {
         self.language = language.name()
         
         if language == Language.spanish {
-            self.text = (shopJson["opening_hours_es"] as! String)
+            self.text = (shopJson["opening_hours_es"] as? String) ?? ""
             return
         }
         
-        self.text = (shopJson["opening_hours_en"] as! String)
+        self.text = (shopJson["opening_hours_en"] as? String) ?? ""
     }
 }
