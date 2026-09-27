@@ -65,7 +65,7 @@ extension Shop {
         }
         
         guard ((image) != nil) else {
-            return UIImage(named: "shop-backgound")
+            return UIImage(named: "shop-background")
         }
         
         return image
