@@ -11,7 +11,6 @@ import CoreData
 
 public class LoadShopImageInteractor {
     private let _manager: ShopAPIManager
-    private var _shopImage: ShopImage? = nil
     
     public init(manager: ShopAPIManager) {
         _manager = manager
@@ -22,13 +21,19 @@ public class LoadShopImageInteractor {
     }
     
     public func execute(shopImage: ShopImage, completion: @escaping (ShopImage) -> Void, onError: @escaping ErrorClosure) {
-        self._shopImage = shopImage
+        // The image is captured per call rather than kept in an instance
+        // property: one interactor is shared by every download, so with more
+        // than one request in flight a stored property pointed at whichever
+        // image was requested last and each result was written into it.
+        guard let urlString = shopImage.url else {
+            return onError(ShopAPIError.invalidURL("Shop image without url"))
+        }
         
-        _manager.getShopImage(urlString: self._shopImage!.url!, completion: { (image: UIImage) in
+        _manager.getShopImage(urlString: urlString, completion: { (image: UIImage) in
             assert(Thread.current === Thread.main)
             
-            self._shopImage!.data = UIImageJPEGRepresentation(image, 1) as NSData?
-            completion(self._shopImage!)
+            shopImage.data = UIImageJPEGRepresentation(image, 1) as NSData?
+            completion(shopImage)
             
         }) { (error: Error) in
             onError(error)
