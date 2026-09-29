@@ -32,6 +32,9 @@ public class LoadAllShopImagesInteractor {
         print("Shops count: \(shopArray.count)")
         
         self._shops = shopArray
+        guard !shopArray.isEmpty else {
+            return completion(shopArray)
+        }
         for (index, _) in self._shops.enumerated() {
             self.loadShopImage(shopItem: index, shopsNumber: shopArray.count, completion, onError)
             self.loadShopLogo(shopItem: index, shopsNumber: shopArray.count, completion, onError)
@@ -41,7 +44,13 @@ public class LoadAllShopImagesInteractor {
     
     // Load and save Shop Images
     public func loadShopImage(shopItem: Int, shopsNumber: Int, _ completion: @escaping ([Shop]) -> Void, _ onError: @escaping ErrorClosure) {
-        guard let shopImage: ShopImage = self._shops[shopItem].image, let _ = shopImage.url else { return }
+        // A shop without an image still has to count as done, otherwise
+        // doCompletion never sees all the counters reach shopsNumber and the
+        // loader spins forever.
+        guard let shopImage: ShopImage = self._shops[shopItem].image, let _ = shopImage.url else {
+            self.numberOfImages = self.numberOfImages + 1
+            return self.doCompletion(completion, shopsCount: shopsNumber)
+        }
         
         _loadShopImageInteractor.execute(shopImage: self._shops[shopItem].image!, completion: { (image: ShopImage) in
             assert(Thread.current === Thread.main)
@@ -63,7 +72,10 @@ public class LoadAllShopImagesInteractor {
     
     // Load and save Shop Logos
     public func loadShopLogo(shopItem: Int, shopsNumber: Int, _ completion: @escaping ([Shop]) -> Void, _ onError: @escaping ErrorClosure) {
-        guard let shopLogo: ShopImage = self._shops[shopItem].logo, let _ = shopLogo.url else { return }
+        guard let shopLogo: ShopImage = self._shops[shopItem].logo, let _ = shopLogo.url else {
+            self.numberOfLogos = self.numberOfLogos + 1
+            return self.doCompletion(completion, shopsCount: shopsNumber)
+        }
         
         _loadShopImageInteractor.execute(shopImage: self._shops[shopItem].logo!, completion: { (image: ShopImage) in
             assert(Thread.current === Thread.main)
@@ -87,7 +99,10 @@ public class LoadAllShopImagesInteractor {
     public func loadShopMapImage(shopItem: Int, shopsNumber: Int, _ completion: @escaping ([Shop]) -> Void, _ onError: @escaping ErrorClosure) {
         guard let shopLocation = self._shops[shopItem].location,
             let shopMapImage: ShopImage = shopLocation.image,
-            let _ = shopMapImage.url else { return }
+            let _ = shopMapImage.url else {
+            self.numberOfMapImages = self.numberOfMapImages + 1
+            return self.doCompletion(completion, shopsCount: shopsNumber)
+        }
         
         _loadShopImageInteractor.execute(shopImage: shopMapImage, completion: { (image: ShopImage) in
             assert(Thread.current === Thread.main)

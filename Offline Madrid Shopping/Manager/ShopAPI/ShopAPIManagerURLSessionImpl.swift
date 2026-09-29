@@ -20,8 +20,11 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
         
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            // The error paths end in a UIAlertController, so they have to reach
+            // the caller on the main queue just like the success path does.
             if let error = error {
-                return onError(error)
+                DispatchQueue.main.async { onError(error) }
+                return
             }
             
             guard let data = data else {
@@ -34,14 +37,15 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
                 guard let shopJsonDict = jsonObject as? ShopJsonDict,
                     let shopJsonArray = shopJsonDict["result"] else {
                     let apiError = ShopAPIError.jsonError("Unexpected shops response format")
-                    return onError(apiError)
+                    DispatchQueue.main.async { onError(apiError) }
+                    return
                 }
 
                 DispatchQueue.main.async {
                     completion(shopJsonArray)
                 }
             } catch {
-                onError(error)
+                DispatchQueue.main.async { onError(error) }
             }
         }
         
@@ -54,67 +58,28 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
     }
     
     public func getShopImage(urlString: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        // DispatchQueue.global().async {
-        // DispatchQueue.global().sync {
         print("Downloading image: \(urlString)")
-            guard let url = URL(string: urlString) else {
-                let apiError = ShopAPIError.invalidURL("Invalid image url \( urlString )")
-                // DispatchQueue.main.sync {
-                    onError(apiError)
-                // }
-                return
-            }
-            
-            do {
-                let data = try Data(contentsOf: url)
-                if let image = UIImage(data: data) {
-                    // DispatchQueue.main.sync {
-                        completion(image)
-                    // }
-                } else {
-                    let apiError = ShopAPIError.downloadError("Error creating image")
-                    // DispatchQueue.main.sync {
-                        onError(apiError)
-                    // }
-                }
-            } catch {
-                let apiError = ShopAPIError.downloadError("Error downloading shop image \(error)")
-                // DispatchQueue.main.sync {
-                    onError(apiError)
-                // }
-            }
-        // }
+        guard let url = URL(string: urlString) else {
+            let apiError = ShopAPIError.invalidURL("Invalid image url \( urlString )")
+            return onError(apiError)
+        }
         
-//        guard let url = URL(string: urlString) else {
-//            let apiError = ShopAPIError.invalidURL("Invalid url \( urlString )")
-//            onError(apiError)
-//            return
-//        }
-//        
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
-//            if let error = error {
-//                DispatchQueue.main.async { onError(error) }
-//                return
-//            }
-//            
-//            guard let imgData = data else {
-//                let apiError = ShopAPIError.downloadError("NO image data")
-//                DispatchQueue.main.async { onError(apiError) }
-//                return
-//            }
-//            
-//            DispatchQueue.main.async {
-//                if let image = UIImage(data: imgData) {
-//                    completion(image)
-//                } else {
-//                    let apiError = ShopAPIError.downloadError("Image creation error")
-//                    onError(apiError)
-//                }
-//            }
-//        }
-//        
-//        task.resume()
+        // This used to be Data(contentsOf:) on the main thread: three blocking
+        // downloads per shop, one after another, with the UI frozen for all of
+        // them. Download asynchronously and hand the result back on the main
+        // queue, which is what the interactors assert on.
+        let task = URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            let result: () -> Void
+            if let error = error {
+                result = { onError(ShopAPIError.downloadError("Error downloading shop image \(error)")) }
+            } else if let data = data, let image = UIImage(data: data) {
+                result = { completion(image) }
+            } else {
+                result = { onError(ShopAPIError.downloadError("Error creating image")) }
+            }
+            DispatchQueue.main.async(execute: result)
+        }
+        task.resume()
     }
     
     public func getAllShopImages(from shopArray: [Shop], completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
