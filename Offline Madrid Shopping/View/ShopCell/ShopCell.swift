@@ -14,17 +14,14 @@ class ShopCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
+    // Every field is assigned on every call. Cells are reused, and the old
+    // "only if present" assignments left the previous shop's name, address
+    // or logo on screen whenever the new one was missing that field.
+    // logoImage() also falls back to the bundled icon when the stored data
+    // does not decode, instead of leaving the image view empty.
     func loadData(shop: Shop) {
-        if let name = shop.name {
-            self.nameLabel.text = name
-        }
-        
-        if let address = shop.address {
-            self.addressLabel.text = address
-        }
-        
-        if let logo = shop.logo, let logoData = logo.data {
-            self.shopLogoImage?.image = UIImage(data: logoData as Data)
-        }
+        self.nameLabel.text = shop.name
+        self.addressLabel.text = shop.address
+        self.shopLogoImage?.image = shop.logoImage()
     }
 }
