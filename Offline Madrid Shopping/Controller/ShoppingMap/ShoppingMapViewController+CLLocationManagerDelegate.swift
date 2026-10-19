@@ -15,8 +15,12 @@ extension ShoppingMapViewController: CLLocationManagerDelegate {
     
     func configureLocationManager() {
         self.locationManager = CLLocationManager()
-        self.locationManager?.requestWhenInUseAuthorization()
         self.locationManager?.delegate = self
-        self.locationManager?.startUpdatingLocation()
+        // Only the permission. The map view (showsUserLocation in the
+        // storyboard) tracks and draws the user's position on its own; this
+        // also started the location manager's own updates, which nothing ever
+        // read (there is no locationManager(_:didUpdateLocations:)) and which
+        // kept the GPS running for as long as the map was alive.
+        self.locationManager?.requestWhenInUseAuthorization()
     }
 }

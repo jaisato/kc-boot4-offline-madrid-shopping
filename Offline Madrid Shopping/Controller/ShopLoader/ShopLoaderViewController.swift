@@ -16,6 +16,12 @@ class ShopLoaderViewController: UIViewController {
     private var shops: [Shop] = []
     private var coreDataManager: CoreDataManager!
     
+    // Set while a load is in flight. "Load Shops" stayed enabled during the
+    // download, so a second tap started a second download and saveAllShops
+    // inserted every shop into Core Data twice (nothing in the model is
+    // unique), and the map and the list showed each one twice from then on.
+    private var isLoading = false
+    
     @IBOutlet weak var aLittleAdviceLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -26,12 +32,22 @@ class ShopLoaderViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.aLittleAdviceLabel.isHidden = true
     }
     
     @IBAction func loadShopsTapped(_ sender: Any) {
+        guard !isLoading else { return }
+        
+        isLoading = true
         self.aLittleAdviceLabel.isHidden = false
         loadShops()
+    }
+    
+    /// Every way out of a load, successful or not, goes through here.
+    private func finishLoading() {
+        isLoading = false
+        activityIndicator.stopAnimating()
     }
     
     // MARK: - Shop loading funcs
@@ -48,10 +64,10 @@ class ShopLoaderViewController: UIViewController {
                 return self.downloadShops()
             }
             
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
         }) { (error: Error) in
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.createAlert(title: "Error loading shops", message: error.localizedDescription)
         }
     }
@@ -65,7 +81,7 @@ class ShopLoaderViewController: UIViewController {
             print("Completion: shops downloaded \( shopJsonArray.count )")
             self.saveShops(shopJsonArray: shopJsonArray)
         }) { (error: Error) in
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.createAlert(title: "Error loading shops", message: error.localizedDescription)
         }
     }
@@ -75,7 +91,7 @@ class ShopLoaderViewController: UIViewController {
     private func saveShops(shopJsonArray: ShopJsonArray) {
         print("saveShops ...")
         guard shopJsonArray.count > 0 else {
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
             return
         }
@@ -90,7 +106,7 @@ class ShopLoaderViewController: UIViewController {
             self.saveAllShopImages(shops: self.shops)
         },
         onError: { (error: Error) in
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.createAlert(title: "Error saving shops", message: error.localizedDescription)
         })
     }
@@ -106,11 +122,11 @@ class ShopLoaderViewController: UIViewController {
             let container = self.coreDataManager.persistentContainer(dbName: self.coreDataManager.DB_NAME)
             self.coreDataManager.saveContext(context: container.viewContext)
             
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             
             self.performSegue(withIdentifier: self.SHOPPING_MAP_SEGUE, sender: self)
         }) { (error: Error) in
-            self.activityIndicator.stopAnimating()
+            self.finishLoading()
             self.createAlert(title: "Error loading shop images", message: "\(error)")
         }
     }

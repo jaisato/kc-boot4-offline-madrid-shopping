@@ -83,10 +83,6 @@ extension ShoppingMapViewController: MKMapViewDelegate {
         mapView.setCenter(annotation.coordinate, animated: true)
     }
     
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        let _ = view.subviews.map { $0.removeFromSuperview() }
-    }
-    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? ShopMapPin else { return }
         
