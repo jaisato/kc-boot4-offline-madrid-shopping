@@ -36,8 +36,11 @@ extension ShoppingMapViewController: MKMapViewDelegate {
     func addShopAnnotations() {
         print("Adding annotations")
         for shop in fetchedResultsController.fetchedObjects! as [Shop] {
-            if let lat = shop.location?.latitude, let lon = shop.location?.longitude {
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            // A shop without coordinates gets no pin. At 0, 0 it sat in the
+            // Gulf of Guinea, and showAnnotations below zoomed the map out
+            // from Madrid to half the world to fit it in.
+            if let location = shop.location, location.hasKnownCoordinates {
+                let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
                 let annotation = ShopMapPin(coordinate: coordinate, shop: shop)
                 self.mapView.addAnnotation(annotation)
             }

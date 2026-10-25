@@ -19,6 +19,13 @@ extension ShopImage {
     }
     
     public static func createShopLocationImage(location: ShopLocation, context: NSManagedObjectContext) -> ShopImage? {
+        // Without coordinates there is nothing to download: the static map of
+        // 0, 0 is open sea. No image, and locationImage() shows the bundled
+        // "staticmap-no-location".
+        guard location.hasKnownCoordinates else {
+            return nil
+        }
+        
         let latitude = location.latitude
         let longitude = location.longitude
         // https, not http. The Static Maps API has served TLS for years, and
