@@ -11,7 +11,6 @@ import UIKit
 
 public typealias ShopJson = Dictionary<String, Any>
 public typealias ShopJsonArray = [ShopJson]
-public typealias ShopJsonDict = Dictionary<String, ShopJsonArray>
 
 extension Shop {
     /**

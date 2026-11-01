@@ -27,6 +27,18 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
                 return
             }
             
+            // An error page (404, 500, a captive portal) used to go to the JSON
+            // parser, and the alert showed its parse error ("The data couldn't
+            // be read because it isn't in the correct format") instead of
+            // saying the server answered with an error. Worse, a JSON error
+            // body with a "result" array would have been taken for the shops.
+            if let httpResponse = response as? HTTPURLResponse,
+                !(200..<300).contains(httpResponse.statusCode) {
+                let apiError = ShopAPIError.downloadError("Shops request failed with HTTP \(httpResponse.statusCode)")
+                DispatchQueue.main.async { onError(apiError) }
+                return
+            }
+            
             guard let data = data else {
                 DispatchQueue.main.async { completion([]) }
                 return
@@ -34,8 +46,13 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
             
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                guard let shopJsonDict = jsonObject as? ShopJsonDict,
-                    let shopJsonArray = shopJsonDict["result"] else {
+                // Only "result" has to be the array of shops. Casting the whole
+                // object to [String: [ShopJson]] demanded that of every key, so
+                // a single extra field next to it (a status, a count, a
+                // timestamp) failed the cast and the download was rejected as
+                // "Unexpected shops response format".
+                guard let shopJsonDict = jsonObject as? [String: Any],
+                    let shopJsonArray = shopJsonDict["result"] as? ShopJsonArray else {
                     let apiError = ShopAPIError.jsonError("Unexpected shops response format")
                     DispatchQueue.main.async { onError(apiError) }
                     return
