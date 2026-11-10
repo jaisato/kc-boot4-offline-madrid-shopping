@@ -13,6 +13,7 @@ Project for Advanced iOS module of the 4th [KeepCoding Mobile Startup Engineerin
 
 * Clone repository: git clone git@github.com:jaisato/kc-boot4-offline-madrid-shopping.git
 * Configuration: open .xcodeproj file with XCode. Build project and run it. 
+* Map of each shop (optional): the detail shows a Google Static Maps image, and that API rejects requests without an API key. Set the `GOOGLE_STATIC_MAPS_API_KEY` build setting, which `Info.plist` reads, without writing the key into a tracked file: for example `xcodebuild -project "Offline Madrid Shopping.xcodeproj" -scheme "Offline Madrid Shopping" GOOGLE_STATIC_MAPS_API_KEY=... build`, or an untracked `.xcconfig` chosen as the base configuration in Project > Info > Configurations. Without it the app does not ask Google and shows the bundled placeholder map. The key travels inside the app bundle, where anyone can read it: restrict it to the Maps Static API in the Google Cloud console and give it a quota.
 * Dependencies: none
 * Database configuration: internal storage with CoreData (SQLLite)
 

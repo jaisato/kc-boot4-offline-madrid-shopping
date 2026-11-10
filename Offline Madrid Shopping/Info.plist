@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Google Static Maps API key for the map of each shop, filled from the
+	     build setting of the same name so that no key is written into a
+	     tracked file. Undefined, the entry is empty and the app shows the
+	     bundled placeholder map without asking Google. See the README. -->
+	<key>GOOGLE_STATIC_MAPS_API_KEY</key>
+	<string>$(GOOGLE_STATIC_MAPS_API_KEY)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
