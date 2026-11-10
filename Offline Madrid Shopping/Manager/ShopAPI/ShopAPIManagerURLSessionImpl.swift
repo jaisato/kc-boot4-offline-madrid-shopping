@@ -75,9 +75,13 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
     }
     
     public func getShopImage(urlString: String, completion: @escaping (UIImage) -> Void, onError: @escaping ErrorClosure) {
-        print("Downloading image: \(urlString)")
+        // The map of a shop carries the Static Maps API key at the end of its
+        // query string (ShopImage.createShopLocationImage). What goes to the
+        // console stops before it: a key has no place in a log.
+        let loggedUrl = urlString.components(separatedBy: "&key=")[0]
+        print("Downloading image: \(loggedUrl)")
         guard let url = URL(string: urlString) else {
-            let apiError = ShopAPIError.invalidURL("Invalid image url \( urlString )")
+            let apiError = ShopAPIError.invalidURL("Invalid image url \( loggedUrl )")
             return onError(apiError)
         }
         
@@ -88,7 +92,9 @@ public class ShopAPIManagerURLSessionImpl: ShopAPIManager {
         let task = URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             let result: () -> Void
             if let error = error {
-                result = { onError(ShopAPIError.downloadError("Error downloading shop image \(error)")) }
+                // localizedDescription and not the error itself: printed whole,
+                // a URLSession error includes the URL that failed, key and all.
+                result = { onError(ShopAPIError.downloadError("Error downloading shop image \(error.localizedDescription)")) }
             } else if let data = data, let image = UIImage(data: data) {
                 result = { completion(image) }
             } else {
