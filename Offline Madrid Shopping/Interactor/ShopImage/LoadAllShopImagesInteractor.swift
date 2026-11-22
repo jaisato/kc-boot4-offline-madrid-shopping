@@ -46,8 +46,10 @@ public class LoadAllShopImagesInteractor {
     public func loadShopImage(shopItem: Int, shopsNumber: Int, _ completion: @escaping ([Shop]) -> Void, _ onError: @escaping ErrorClosure) {
         // A shop without an image still has to count as done, otherwise
         // doCompletion never sees all the counters reach shopsNumber and the
-        // loader spins forever.
-        guard let shopImage: ShopImage = self._shops[shopItem].image, let _ = shopImage.url else {
+        // loader spins forever. Its url is empty when the json had none: the
+        // placeholder stays and there is nothing to download.
+        guard let shopImage: ShopImage = self._shops[shopItem].image,
+            let url = shopImage.url, !url.isEmpty else {
             self.numberOfImages = self.numberOfImages + 1
             return self.doCompletion(completion, shopsCount: shopsNumber)
         }
@@ -72,7 +74,8 @@ public class LoadAllShopImagesInteractor {
     
     // Load and save Shop Logos
     public func loadShopLogo(shopItem: Int, shopsNumber: Int, _ completion: @escaping ([Shop]) -> Void, _ onError: @escaping ErrorClosure) {
-        guard let shopLogo: ShopImage = self._shops[shopItem].logo, let _ = shopLogo.url else {
+        guard let shopLogo: ShopImage = self._shops[shopItem].logo,
+            let url = shopLogo.url, !url.isEmpty else {
             self.numberOfLogos = self.numberOfLogos + 1
             return self.doCompletion(completion, shopsCount: shopsNumber)
         }

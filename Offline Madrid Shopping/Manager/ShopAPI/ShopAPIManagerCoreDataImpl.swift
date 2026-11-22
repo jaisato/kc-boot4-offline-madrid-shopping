@@ -40,8 +40,10 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
     
     public func saveAllShop(shopJsonArray: ShopJsonArray, completion: @escaping ([Shop]) -> Void, onError: @escaping ErrorClosure) {
         let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
-        let shops: [Shop] = shopJsonArray.map({ (shopJson: ShopJson) -> Shop in
-            return self.createShop(from: shopJson, container: container)
+        // flatMap and not map: a shop that breaks a rule of the model is left
+        // out (see validShop) instead of failing the save of all the others.
+        let shops: [Shop] = shopJsonArray.flatMap({ (shopJson: ShopJson) -> Shop? in
+            return self.validShop(from: shopJson, container: container)
         })
         
         self._manager.saveContext(context: container.viewContext)
@@ -51,10 +53,35 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
     
     public func saveShop(shopJson: ShopJson, completion: @escaping (Shop) -> Void, onError: @escaping ErrorClosure) {
         let container = self._manager.persistentContainer(dbName: self._manager.DB_NAME)
-        let shop = self.createShop(from: shopJson, container: container)
+        guard let shop = self.validShop(from: shopJson, container: container) else {
+            return onError(ShopAPIError.saveError("The shop does not satisfy the data model"))
+        }
         self._manager.saveContext(context: container.viewContext)
         
         completion(shop)
+    }
+    
+    /// The shop built from shopJson, or nil when it breaks a rule of the Core
+    /// Data model, and then nothing of it is left in the context. The whole
+    /// import is saved at once and saveContext ends in fatalError on any
+    /// validation error, so one shop without a name (Shop.name has a minimum
+    /// length of 1, and a missing one fell back to "") or with a negative id
+    /// (minimum 0) crashed the app; with nothing saved, the next "Load Shops"
+    /// downloaded the same data and crashed again.
+    private func validShop(from shopJson: ShopJson, container: NSPersistentContainer) -> Shop? {
+        let shop = self.createShop(from: shopJson, container: container)
+        
+        do {
+            try shop.validateForInsert()
+            return shop
+        } catch {
+            let id = (shopJson["id"] as? String) ?? "?"
+            print("Skipping shop \(id): \(error.localizedDescription)")
+            // The cascade delete rules take its location, images,
+            // descriptions, opening hours and keywords with it.
+            container.viewContext.delete(shop)
+            return nil
+        }
     }
     
     private func createShop(from shopJson: ShopJson, container: NSPersistentContainer) -> Shop {
@@ -66,14 +93,18 @@ public class ShopAPIManagerCoreDataImpl: ShopAPIManager {
         shop.location = location
         
         
-        // Shop images
-        if let imageUrl = shopJson["img"] as? String,
-            let image = UIImage(named: "shop-background"),
+        // Shop images. The model requires both (Shop.image and Shop.logo are
+        // not optional), so a shop whose "img" or "logo_img" was missing or
+        // null got neither and failed validation when the import was saved.
+        // The placeholder is stored either way; an empty url only means there
+        // is nothing to download (see LoadAllShopImagesInteractor).
+        let imageUrl = (shopJson["img"] as? String) ?? ""
+        if let image = UIImage(named: "shop-background"),
             let imageData = UIImageJPEGRepresentation(image, 1) as NSData? {
             shop.image = ShopImage(url: imageUrl, data: imageData, context: container.viewContext)
         }
-        if let logoUrl = shopJson["logo_img"] as? String,
-            let logo = UIImage(named: "shop-icon"),
+        let logoUrl = (shopJson["logo_img"] as? String) ?? ""
+        if let logo = UIImage(named: "shop-icon"),
             let logoData = UIImageJPEGRepresentation(logo, 1) as NSData? {
             shop.logo = ShopImage(url: logoUrl, data: logoData, context: container.viewContext)
         }

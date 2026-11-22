@@ -102,6 +102,13 @@ class ShopLoaderViewController: UIViewController {
     private func saveAllShops(shopJsonArray: ShopJsonArray) {
         let saveAllShopsInteractor = SaveAllShopsInteractor()
         saveAllShopsInteractor.execute(from: shopJsonArray, completion: { (shops: [Shop]) in
+            // Every shop of the response may have been left out as invalid.
+            guard !shops.isEmpty else {
+                self.finishLoading()
+                self.createAlert(title: "Loading shops", message: "Sorry, there's no shops")
+                return
+            }
+            
             self.shops = shops
             self.saveAllShopImages(shops: self.shops)
         },
