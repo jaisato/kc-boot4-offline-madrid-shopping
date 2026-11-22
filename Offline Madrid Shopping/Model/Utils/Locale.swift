@@ -14,7 +14,14 @@ public class Locale {
     public static let SPANISH = "es"
     
     public static func getDeviceLanguage() -> Language {
-        guard let langName = Bundle.main.preferredLocalizations.first as String? else {
+        // Not Bundle.main.preferredLocalizations: it only offers localizations
+        // the bundle contains, and this one has nothing but Base.lproj, so it
+        // answered "en" on every device and the Spanish descriptions and
+        // opening hours, downloaded and stored with each shop, were never
+        // shown. Match the user's preferred languages against the languages
+        // the shop data comes in instead ("es-ES" or "es-MX" give "es").
+        let shopLanguages = [Language.english.name(), Language.spanish.name()]
+        guard let langName = Bundle.preferredLocalizations(from: shopLanguages).first else {
             return Language.english
         }
         print("Device Language: \(langName)")
